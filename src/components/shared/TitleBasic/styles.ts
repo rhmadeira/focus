@@ -1,10 +1,19 @@
 import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
+
+export const ContainerTitle = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.contrastText,
+  padding: "0.5rem 1rem",
+
+  height: "5rem",
+}));
 
 export const TitleContent = styled("h1")(({ theme }) => ({
   fontFamily: "Roboto",
+  color: theme.palette.secondary.dark,
+  fontWeight: 600,
   lineHeight: "1.5rem",
-  fontSize: "3rem",
-  margin: "1rem 0",
+  fontSize: "2rem",
   position: "relative",
   zIndex: 1,
 
@@ -12,11 +21,11 @@ export const TitleContent = styled("h1")(({ theme }) => ({
     content: "''",
     position: "absolute",
     display: "block",
-    width: "1.5rem",
-    height: "1.5rem",
+    width: "1rem",
+    height: "1rem",
     backgroundColor: theme.palette.primary.light,
-    bottom: "-10px",
-    left: " -5px",
+    bottom: "-5px",
+    left: " -2px",
     borderRadius: "0.2rem",
     zIndex: -1,
   },

@@ -1,10 +1,10 @@
 import TitleBasic from "../../components/shared/TitleBasic";
-import { ContainerOperations } from "./styles";
+import { ContainerAll } from "./styles";
 
 export default function Operacoes() {
   return (
-    <ContainerOperations>
+    <ContainerAll>
       <TitleBasic>Operações</TitleBasic>
-    </ContainerOperations>
+    </ContainerAll>
   );
 }

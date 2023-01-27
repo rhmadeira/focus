@@ -1,18 +1,14 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { ContainerBar, ContentBar } from "./styles";
-import DrawerMenu from "../DrawerMenu";
-import { themeMui } from "../../../styles/themes/muiGlobal";
+import { ContentBar } from "./styles";
 
 export default function Bar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -84,7 +80,7 @@ export default function Bar() {
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <p>Menssagens</p>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -96,7 +92,7 @@ export default function Bar() {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>Notificações</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -108,81 +104,59 @@ export default function Bar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Perfil</p>
       </MenuItem>
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1, background: themeMui.palette.primary.main }}>
-      <ContainerBar position="static">
-        <ContentBar>
+    <Box>
+      <ContentBar>
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
           <IconButton
             size="large"
-            edge="start"
-            color="primary"
-            aria-label="open drawer"
+            aria-label="show 4 new mails"
+            color="inherit"
           >
-            <DrawerMenu />
+            <Badge badgeContent={2} color="error">
+              <MailIcon />
+            </Badge>
           </IconButton>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
           >
-            Focus nfs
-          </Typography>
+            <Badge badgeContent={2} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+            size="large"
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Box>
 
-          <Box sx={{ flexGrow: 1 }} />
-
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={2} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={2} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </ContentBar>
-      </ContainerBar>
+        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            size="large"
+            aria-label="show more"
+            aria-controls={mobileMenuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+        </Box>
+      </ContentBar>
       {renderMobileMenu}
       {renderMenu}
     </Box>

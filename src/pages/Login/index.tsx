@@ -8,6 +8,7 @@ import {
   ContentLogo,
   ContentForm,
   Footer,
+  TitleLogin,
 } from "./styles";
 
 export default function Login() {
@@ -16,7 +17,7 @@ export default function Login() {
       <ContentLogo />
       <ConteinerForm>
         <ContentForm component={"form"}>
-          <TitleBasic>Login</TitleBasic>
+          <TitleLogin>Login</TitleLogin>
           <InputBasic label="E-mail:" />
           <InputBasic label="Senha:" />
           <Box>

@@ -1,11 +1,5 @@
-import { Outlet } from "react-router-dom";
-import Bar from "../../shared/Bar";
+import SideBar from "../../shared/SideBar";
 
 export default function Layout() {
-  return (
-    <div>
-      <Bar />
-      <Outlet />
-    </div>
-  );
+  return <SideBar />;
 }

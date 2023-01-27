@@ -1,9 +1,13 @@
-import { TitleContent } from "./styles";
+import { ContainerTitle, TitleContent } from "./styles";
 
 interface TitleBasicProps {
   children: React.ReactNode;
 }
 
 export default function TitleBasic({ children }: TitleBasicProps) {
-  return <TitleContent>{children}</TitleContent>;
+  return (
+    <ContainerTitle>
+      <TitleContent>{children}</TitleContent>
+    </ContainerTitle>
+  );
 }

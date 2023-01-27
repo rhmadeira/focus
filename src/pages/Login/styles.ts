@@ -36,3 +36,27 @@ export const Footer = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   maxWidth: "500px",
 }));
+
+export const TitleLogin = styled("h1")(({ theme }) => ({
+  fontFamily: "Roboto",
+  color: theme.palette.secondary.dark,
+  fontWeight: 600,
+  lineHeight: "1.5rem",
+  fontSize: "2rem",
+  position: "relative",
+  zIndex: 1,
+  marginBottom: "3px",
+
+  "&::after": {
+    content: "''",
+    position: "absolute",
+    display: "block",
+    width: "1rem",
+    height: "1rem",
+    backgroundColor: theme.palette.primary.light,
+    bottom: "-5px",
+    left: " -2px",
+    borderRadius: "0.2rem",
+    zIndex: -1,
+  },
+}));
