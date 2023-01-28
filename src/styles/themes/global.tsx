@@ -32,21 +32,19 @@ export const globalStyles = (
 
       :root {
         --white: #f8f9fc;
+        --White100: #f7efd8;
         --black: #222222;
 
         --gray50: #e9eaed;
         --gray100: #dadada;
         --gray200: #85898e;
 
-        --blue600: #03263a;
-        --blue500: #0f334c;
-        --blue400: #086aad;
         --blue300: #25759a;
+        --blue400: #086aad;
+        --blue500: #0f334c;
+        --blue600: #03263a;
 
         --red400: #ff0000;
-
-        --orange200: #cc7b44;
-        --orange100: #f79552;
       }
       @keyframes loading {
         to {

@@ -1,5 +1,5 @@
-import { ButtonBasic } from "./styles";
+import { ButtonContent } from "./styles";
 
-export default function Button({ children }: any) {
-  return <ButtonBasic>{children}</ButtonBasic>;
+export default function ButtonBasic({ children }: any) {
+  return <ButtonContent>{children}</ButtonContent>;
 }

@@ -1,36 +1,37 @@
-import { Box } from "@mui/material";
 import ButtonBasic from "../../components/shared/ButtonBasic";
 import InputBasic from "../../components/shared/InputBasic";
-import TitleBasic from "../../components/shared/TitleBasic";
 import {
-  ContainerForm,
-  ConteinerForm,
-  ContentLogo,
-  ContentForm,
+  ContainerAll,
   Footer,
   TitleLogin,
+  ContentImg,
+  ContainerForm,
 } from "./styles";
+import Logo from "../../assets/logoblue.svg";
 
 export default function Login() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
+
   return (
-    <ContainerForm>
-      <ContentLogo />
-      <ConteinerForm>
-        <ContentForm component={"form"}>
+    <ContainerAll>
+      <ContentImg />
+      <ContainerForm>
+        <form onSubmit={handleSubmit}>
+          <img src={Logo} alt="logo" width={200} />
           <TitleLogin>Login</TitleLogin>
           <InputBasic label="E-mail:" />
           <InputBasic label="Senha:" />
-          <Box>
+          <div>
             <ButtonBasic>Entrar</ButtonBasic>
-          </Box>
-        </ContentForm>
-        <Box>
-          <Footer>
-            Se você ainda não está cadastrado solicite ao administrador de seu
-            sistema que crie seu usuário.
-          </Footer>
-        </Box>
-      </ConteinerForm>
-    </ContainerForm>
+          </div>
+        </form>
+        <Footer>
+          Se você ainda não está cadastrado solicite ao administrador de seu
+          sistema que crie seu usuário.
+        </Footer>
+      </ContainerForm>
+    </ContainerAll>
   );
 }

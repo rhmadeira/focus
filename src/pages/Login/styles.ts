@@ -1,62 +1,61 @@
 import { Box, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import styled from "@emotion/styled";
 
-export const ContainerForm = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flex: 1,
-  // backgroundColor: theme.palette.secondary.main,
-}));
+export const ContainerAll = styled.div`
+  display: flex;
+  flex: 1;
+  background-color: var(--gray50);
+`;
 
-export const ContentLogo = styled(Box)(({ theme }) => ({
-  height: "100vh",
-  flex: 1,
-  background: theme.palette.background.default,
-}));
+export const ContentImg = styled.div`
+  height: 100;
+  flex: 1;
+  background: linear-gradient(135deg, #0f334c 0%, #547891 100%);
+`;
 
-export const ConteinerForm = styled(Box)(({ theme }) => ({
-  height: "100vh",
-  width: "700px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-}));
+export const TitleLogin = styled.h1`
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 600;
+  line-height: 1.5rem;
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1rem;
 
-export const ContentForm = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: theme.spacing(2),
-  minWidth: "400px",
-}));
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-color: #49769a;
+    bottom: -5px;
+    left: -2px;
+    border-radius: 0.2rem;
+    z-index: -1;
+  }
+`;
 
-export const Footer = styled(Typography)(({ theme }) => ({
-  marginTop: theme.spacing(8),
-  fontSize: "1.2rem",
-  display: "flex",
-  textAlign: "center",
-  maxWidth: "500px",
-}));
+export const ContainerForm = styled.div`
+  height: 100vh;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-export const TitleLogin = styled("h1")(({ theme }) => ({
-  fontFamily: "Roboto",
-  color: theme.palette.secondary.dark,
-  fontWeight: 600,
-  lineHeight: "1.5rem",
-  fontSize: "2rem",
-  position: "relative",
-  zIndex: 1,
-  marginBottom: "3px",
+  form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    gap: 16px;
+  }
+`;
 
-  "&::after": {
-    content: "''",
-    position: "absolute",
-    display: "block",
-    width: "1rem",
-    height: "1rem",
-    backgroundColor: theme.palette.primary.light,
-    bottom: "-5px",
-    left: " -2px",
-    borderRadius: "0.2rem",
-    zIndex: -1,
-  },
-}));
+export const Footer = styled.footer`
+  display: flex;
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 500px;
+  margin-top: 3rem;
+`;

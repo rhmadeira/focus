@@ -7,5 +7,12 @@ interface InputBasicProps {
 }
 
 export default function BasicTextFields({ label }: InputBasicProps) {
-  return <TextField id="outlined-basic" label={label} variant="outlined" />;
+  return (
+    <TextField
+      id="outlined-basic"
+      label={label}
+      variant="outlined"
+      style={{}}
+    />
+  );
 }
