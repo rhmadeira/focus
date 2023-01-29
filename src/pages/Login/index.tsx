@@ -8,21 +8,48 @@ import {
   ContainerForm,
 } from "./styles";
 import Logo from "../../assets/logoblue.svg";
+import { Controller, useForm } from "react-hook-form";
+import * as zod from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
+const loginSchema = zod.object({
+  email: zod.string().email(),
+  password: zod.string().min(6),
+});
+
+export type LoginData = zod.infer<typeof loginSchema>;
 
 export default function Login() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const { handleSubmit, control } = useForm<LoginData>({
+    resolver: zodResolver(loginSchema),
+  });
+  const { handleAuthLogin } = useContext(AuthContext);
+
+  function handleLogin(data: LoginData) {
+    handleAuthLogin(data);
   }
 
   return (
     <ContainerAll>
       <ContentImg />
       <ContainerForm>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <img src={Logo} alt="logo" width={200} />
           <TitleLogin>Login</TitleLogin>
-          <InputBasic label="E-mail:" />
-          <InputBasic label="Senha:" />
+          <Controller
+            control={control}
+            name="email"
+            defaultValue=""
+            render={({ field }) => <InputBasic label="E-mail:" field={field} />}
+          />
+          <Controller
+            control={control}
+            name="password"
+            defaultValue=""
+            render={({ field }) => <InputBasic label="Senha:" field={field} />}
+          />
           <div>
             <ButtonBasic>Entrar</ButtonBasic>
           </div>
