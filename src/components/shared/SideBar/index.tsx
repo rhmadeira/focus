@@ -93,7 +93,7 @@ export default function MiniDrawer() {
               </ListItemButton>
             </Link>
             {/* Operações */}
-            <Link to="/operacao">
+            <Link to="/operacao/referencia">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -117,7 +117,7 @@ export default function MiniDrawer() {
               </ListItemButton>
             </Link>
             {/* Cadastro */}
-            <Link to="/cadastro">
+            <Link to="/cadastro/buscar">
               <ListItemButton
                 sx={{
                   minHeight: 48,

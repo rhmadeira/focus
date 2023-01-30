@@ -3,6 +3,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import TitleBasic from "../../components/shared/TitleBasic";
 import { ContainerPages } from "../../styles/themes/global";
 import { ContainerAll, ContainerNav } from "./styles";
+import SearchIcon from "@mui/icons-material/Search";
+import SubNavOperation from "./components/SubNavOperation";
 
 export default function Operacoes() {
   return (
@@ -10,16 +12,7 @@ export default function Operacoes() {
       <TitleBasic>Operações</TitleBasic>
       <ContainerPages>
         <ContainerNav>
-          <NavLink to="referencia">
-            <Button sx={{ width: 200 }} variant="contained">
-              Buscar Referência
-            </Button>
-          </NavLink>
-          <NavLink to="referencia">
-            <Button sx={{ width: 200 }} variant="contained">
-              Uma outra opção
-            </Button>
-          </NavLink>
+          <SubNavOperation />
         </ContainerNav>
         <Outlet />
       </ContainerPages>

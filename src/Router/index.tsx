@@ -8,6 +8,7 @@ import NotFound from "../pages/NotFound";
 import Collaborators from "../pages/Registration/Collaborators";
 import Companies from "../pages/Registration/Companies";
 import SearchRef from "../pages/Operations/SearchRef";
+import SearchRegistration from "../pages/Registration/SearchRegistration";
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
           <Route path="referencia" element={<SearchRef />} />
         </Route>
         <Route path="cadastro" element={<Registration />}>
+          <Route path="buscar" element={<SearchRegistration />} />
           <Route path="colaborador" element={<Collaborators />} />
           <Route path="empresa" element={<Companies />} />
         </Route>
