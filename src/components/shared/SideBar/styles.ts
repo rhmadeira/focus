@@ -9,7 +9,7 @@ export const openedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  backgroundColor: theme.palette.primary.dark,
+  backgroundColor: theme.palette.primary.contrastText,
   boxSizing: "initial",
   overflowX: "hidden",
 });
@@ -20,7 +20,7 @@ export const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  backgroundColor: theme.palette.primary.contrastText,
+  backgroundColor: theme.palette.primary.main,
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -63,7 +63,7 @@ export const Drawer = styled(MuiDrawer, {
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
-  border: "none",
+  // border: "none",
   boxSizing: "border-box",
   ...(open && {
     ...openedMixin(theme),
@@ -92,5 +92,3 @@ interface ListItemButtonProps {
 export const DrawerBasic = styled("div")(({ theme }) => ({
   marginTop: "3rem",
 }));
-
-// Bar

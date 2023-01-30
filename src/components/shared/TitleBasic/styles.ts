@@ -9,9 +9,9 @@ export const ContainerTitle = styled(Box)(({ theme }) => ({
 }));
 
 export const TitleContent = styled("h1")(({ theme }) => ({
-  fontFamily: "Roboto",
+  fontFamily: "Roboto, sans-serif",
   color: theme.palette.secondary.dark,
-  fontWeight: 600,
+  fontWeight: 400,
   lineHeight: "1.5rem",
   fontSize: "2rem",
   position: "relative",

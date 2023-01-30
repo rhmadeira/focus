@@ -1,4 +1,7 @@
 import { css, Global } from "@emotion/react";
+import styled from "@emotion/styled";
+import React from "react";
+import BgFormas from "../../assets/bg-formas.svg";
 
 export const globalStyles = (
   <Global
@@ -6,18 +9,22 @@ export const globalStyles = (
       html,
       body {
         box-sizing: border-box;
-        background: var(--gray50);
+        background: var(--gray100);
 
         padding: 0;
         margin: 0;
 
         overflow-x: hidden;
 
-        font-family: "Poppins", sans-serif;
+        font-family: "Roboto", sans-serif;
         color: #222222;
 
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
       }
       body::-webkit-scrollbar {
         width: 4px;
@@ -39,7 +46,7 @@ export const globalStyles = (
         --gray100: #dadada;
         --gray200: #85898e;
 
-        --blue300: #25759a;
+        --blue300: #49769a;
         --blue400: #086aad;
         --blue500: #0f334c;
         --blue600: #03263a;
@@ -54,3 +61,9 @@ export const globalStyles = (
     `}
   />
 );
+
+export const ContainerPages = styled.section`
+  padding: 0 20px;
+  /* height: 100vh; */
+  /* background-image: url(${BgFormas}) !important; */
+`;

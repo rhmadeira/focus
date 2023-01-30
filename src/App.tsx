@@ -4,7 +4,8 @@ import Login from "./pages/Login";
 import Router from "./Router";
 
 function App() {
-  const { token } = useContext(AuthContext);
+  // const { token } = useContext(AuthContext);
+  const token = true;
   return <div>{!token ? <Login /> : <Router />}</div>;
 }
 

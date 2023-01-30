@@ -48,7 +48,9 @@ export default function Login() {
             control={control}
             name="password"
             defaultValue=""
-            render={({ field }) => <InputBasic label="Senha:" field={field} />}
+            render={({ field }) => (
+              <InputBasic label="Senha:" type="password" field={field} />
+            )}
           />
           <div>
             <ButtonBasic>Entrar</ButtonBasic>

@@ -12,11 +12,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { AppBar, Drawer, DrawerBasic, DrawerHeader } from "./styles";
 import HomeIcon from "@mui/icons-material/Home";
 import Logo from "../../../assets/logo.svg";
 import Bar from "./Bar";
+import PaidIcon from "@mui/icons-material/Paid";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
+import styled from "@emotion/styled";
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -47,8 +51,9 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-
-          <img src={Logo} alt="logo" width={120} />
+          <Link to="/">
+            <img src={Logo} alt="logo" width={120} />
+          </Link>
           <div style={{ marginLeft: "auto" }}>
             <Bar />
           </div>
@@ -66,66 +71,99 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <List>
           <ListItem disablePadding sx={{ display: "block", border: "none" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
+            {/* Home */}
+            <Link to="/">
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Operações"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
-            </ListItemButton>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <HomeIcon color={open ? "primary" : "secondary"} />
+                </ListItemIcon>
+                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </Link>
+            {/* Operações */}
+            <Link to="/operacao">
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Cadastros"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
-            </ListItemButton>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <DeveloperBoardIcon color={open ? "primary" : "secondary"} />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Operações"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </Link>
+            {/* Cadastro */}
+            <Link to="/cadastro">
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Faturas" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ManageAccountsIcon color={open ? "primary" : "secondary"} />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Cadastros"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </Link>
+            {/* Boletos */}
+            <Link to="/boleto">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <PaidIcon color={open ? "primary" : "secondary"} />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Boletos"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </Link>
           </ListItem>
         </List>
       </Drawer>

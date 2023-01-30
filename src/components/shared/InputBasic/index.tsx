@@ -2,6 +2,7 @@ import TextField from "@mui/material/TextField";
 
 interface InputBasicProps {
   label: string;
+  type?: string;
   field: {
     name: string;
     value: string;
@@ -10,10 +11,11 @@ interface InputBasicProps {
   };
 }
 
-export default function InputBasic({ label, field }: InputBasicProps) {
+export default function InputBasic({ label, field, type }: InputBasicProps) {
   return (
     <TextField
-      id="outlined-basic"
+      id={field.name}
+      type={type}
       label={label}
       variant="outlined"
       style={{}}
