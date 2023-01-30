@@ -1,7 +1,9 @@
+import { ContainerAll } from "./styles";
+
 export default function Home() {
   return (
-    <div>
+    <ContainerAll>
       <h1>Home</h1>
-    </div>
+    </ContainerAll>
   );
 }

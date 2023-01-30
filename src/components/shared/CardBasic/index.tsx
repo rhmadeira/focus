@@ -2,7 +2,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea } from "@mui/material";
 import Bgblue500 from "../../../assets/bg-blue500.svg";
 import Bggray500 from "../../../assets/bg-gray500.svg";
 import Bgtriangulo from "../../../assets/bg-triangulo.svg";
@@ -15,8 +15,8 @@ interface CardBasicProps {
 
 export default function CardBasic({ alt, children, img }: CardBasicProps) {
   return (
-    <Card sx={{ width: 200 }}>
-      <CardActionArea>
+    <Card>
+      <CardActionArea sx={{ width: 200 }}>
         <CardMedia
           component="img"
           height="30"

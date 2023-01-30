@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 interface InputBasicProps {
   label: string;
   type?: string;
-  field: {
+  field?: {
     name: string;
     value: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,7 +14,7 @@ interface InputBasicProps {
 export default function InputBasic({ label, field, type }: InputBasicProps) {
   return (
     <TextField
-      id={field.name}
+      id={field?.name}
       type={type}
       label={label}
       variant="outlined"

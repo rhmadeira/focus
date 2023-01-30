@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 
 export const ContainerAll = styled.main``;
+
 export const ContainerNav = styled.nav`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 1rem;
-  background: var(--gray50);
-  padding: 1rem;
   width: max-content;
   border-radius: 0.5rem;
 `;
