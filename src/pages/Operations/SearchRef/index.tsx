@@ -1,16 +1,17 @@
 import Button from "@mui/material/Button";
-import DateInput from "../../../components/shared/Inputs/DateInput";
 import InputBasic from "../../../components/shared/Inputs/InputBasic";
 import TitleSub from "../../../components/shared/TitleSub";
 import {
+  Container,
   ContainerButton,
-  ContainerFields,
   ContainerForm,
+  ContainerInput,
+  ContainerPeriod,
   SearchForm,
 } from "./styles";
-import * as zod from "zod";
-import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import * as zod from "zod";
+import { useForm } from "react-hook-form";
 
 const schemaSearchRef = zod.object({
   dateStart: zod.string().optional(),
@@ -35,35 +36,55 @@ export default function SearchRef() {
     <ContainerForm>
       <TitleSub>Busca de Referência:</TitleSub>
       <SearchForm onSubmit={handleSubmit(handleSearchRef)}>
-        <ContainerFields>
-          <DateInput label="Período:" />
+        <ContainerPeriod>
+          <p>Period</p>
           <span>até</span>
-          <DateInput label="Período:" />
-        </ContainerFields>
-        <ContainerFields>
-          <Controller
-            name="company"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <InputBasic
-                label="Empresa teste"
-                size="small"
-                bg="secondary"
-                type="text"
-                // {...field}
-                value={field.value}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <InputBasic label="Empresa" size="small" bg="secondary" />
-          <InputBasic label="Referência" size="small" bg="secondary" />
-        </ContainerFields>
-        <ContainerFields>
-          <InputBasic label="Número" size="small" />
-          <InputBasic label="N.RPS" size="small" />
-        </ContainerFields>
+          <p>Period</p>
+        </ContainerPeriod>
+        <Container>
+          <ContainerInput>
+            <InputBasic
+              controller={{
+                control,
+                name: "company",
+                defaultValue: "",
+              }}
+              label="Empresa"
+              size="small"
+              type="text"
+            />
+            <InputBasic
+              controller={{
+                control,
+                name: "reference",
+                defaultValue: "",
+              }}
+              label="Referência"
+              size="small"
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <InputBasic
+              controller={{
+                control,
+                name: "number",
+                defaultValue: "",
+              }}
+              label="Número"
+              size="small"
+            />
+
+            <InputBasic
+              controller={{
+                control,
+                name: "nRPS",
+                defaultValue: "",
+              }}
+              label="N.RPS"
+              size="small"
+            />
+          </ContainerInput>
+        </Container>
         <ContainerButton>
           <Button type="submit" variant="contained">
             Buscar
