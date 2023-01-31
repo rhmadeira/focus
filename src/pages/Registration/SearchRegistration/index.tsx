@@ -1,3 +1,10 @@
+import TitleSub from "../../../components/shared/TitleSub";
+import { ContainerAll } from "../styles";
+
 export default function SearchRegistration() {
-  return <h2>Buscar Cadastro:</h2>;
+  return (
+    <ContainerAll>
+      <TitleSub>Buscar Cadastro:</TitleSub>
+    </ContainerAll>
+  );
 }

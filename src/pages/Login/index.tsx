@@ -1,5 +1,5 @@
 import ButtonBasic from "../../components/shared/ButtonBasic";
-import InputBasic from "../../components/shared/InputBasic";
+import InputBasic from "../../components/shared/Inputs/InputBasic";
 import {
   ContainerAll,
   Footer,

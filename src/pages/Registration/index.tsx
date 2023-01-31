@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import TitleBasic from "../../components/shared/TitleBasic";
 import { ContainerPages } from "../../styles/themes/global";
 import { ContainerAll, ContainerNav } from "./styles";
-import SubNav from "./components/SubNavRegistration";
+import SubNavRegistration from "./components/SubNavRegistration";
 
 export default function Registration() {
   return (
@@ -12,7 +12,7 @@ export default function Registration() {
         <TitleBasic>Cadastro</TitleBasic>
         <ContainerPages>
           <ContainerNav>
-            <SubNav />
+            <SubNavRegistration />
           </ContainerNav>
           <Outlet />
         </ContainerPages>

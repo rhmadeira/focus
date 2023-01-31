@@ -20,7 +20,6 @@ import Bar from "./Bar";
 import PaidIcon from "@mui/icons-material/Paid";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
-import styled from "@emotion/styled";
 
 export default function MiniDrawer() {
   const theme = useTheme();

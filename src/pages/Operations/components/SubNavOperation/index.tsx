@@ -25,12 +25,12 @@ export default function SubNavOperation() {
           component={NavLink}
           to="referencia"
         />
-        <BottomNavigationAction
+        {/* <BottomNavigationAction
           label="Opção 2"
           icon={<PersonAddAlt1Icon />}
           component={NavLink}
           to="opcao"
-        />
+        /> */}
       </BottomNavigation>
     </div>
   );

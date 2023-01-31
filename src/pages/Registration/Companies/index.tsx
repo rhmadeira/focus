@@ -1,3 +1,10 @@
+import TitleSub from "../../../components/shared/TitleSub";
+import { ContainerAll } from "../styles";
+
 export default function Companies() {
-  return <h2>Empresas:</h2>;
+  return (
+    <ContainerAll>
+      <TitleSub>Adicionar Empresa:</TitleSub>
+    </ContainerAll>
+  );
 }
