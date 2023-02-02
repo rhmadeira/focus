@@ -11,15 +11,27 @@ import {
 } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import TextField from "@mui/material/TextField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs, { type Dayjs } from "dayjs";
 
 const schemaSearchRef = zod.object({
-  dateStart: zod.string().optional(),
+  dateStart: zod.instanceof(dayjs as unknown as typeof Dayjs).optional(),
   dateEnd: zod.string().optional(),
   company: zod.string().optional(),
   reference: zod.string().optional(),
   number: zod.string().optional(),
   nRPS: zod.string().optional(),
+});
+
+const schemaSearchApi = schemaSearchRef.transform((data) => {
+  return {
+    ...data,
+    dateStart: data.dateStart?.format("YYYY-MM-DDTHH:mm:ssZ[Z]"),
+  };
 });
 
 export type SearchRefFormData = zod.infer<typeof schemaSearchRef>;
@@ -30,14 +42,31 @@ export default function SearchRef() {
   });
 
   function handleSearchRef(data: SearchRefFormData) {
-    console.log(data);
+    const apiData = schemaSearchApi.parse(data);
+    console.log(apiData);
   }
   return (
     <ContainerForm>
       <TitleSub>Busca de Referência:</TitleSub>
       <SearchForm onSubmit={handleSubmit(handleSearchRef)}>
         <ContainerPeriod>
-          <p>Period</p>
+          <Controller
+            control={control}
+            name="dateStart"
+            render={({ field }) => (
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Basic example"
+                  {...field}
+                  onChange={(newValue) => {
+                    field.onChange(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            )}
+          />
+
           <span>até</span>
           <p>Period</p>
         </ContainerPeriod>
