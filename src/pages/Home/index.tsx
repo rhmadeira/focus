@@ -1,9 +1,6 @@
+import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import { ContainerAll } from "./styles";
 
 export default function Home() {
-  return (
-    <ContainerAll>
-      <h1>Home</h1>
-    </ContainerAll>
-  );
+  return <LayoutBasePage title="Home">teste</LayoutBasePage>;
 }

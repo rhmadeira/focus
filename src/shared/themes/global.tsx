@@ -1,6 +1,5 @@
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
 import BgFormas from "../../assets/bg-formas.svg";
 
 export const globalStyles = (
@@ -9,7 +8,7 @@ export const globalStyles = (
       html,
       body {
         box-sizing: border-box;
-        background: var(--gray100);
+        /* background: var(--gray100); */
 
         padding: 0;
         margin: 0;
@@ -29,13 +28,13 @@ export const globalStyles = (
       body::-webkit-scrollbar {
         width: 4px;
       }
-      body::-webkit-scrollbar-track {
+      /* body::-webkit-scrollbar-track {
         background: #03263a;
-      }
-      body::-webkit-scrollbar-thumb {
+      } */
+      /* body::-webkit-scrollbar-thumb {
         background-color: var(--blue400);
         border-radius: 20px;
-      }
+      } */
 
       :root {
         --white: #f8f9fc;
@@ -52,6 +51,8 @@ export const globalStyles = (
         --blue600: #03263a;
 
         --red400: #ff0000;
+
+        --gradient: "linear-gradient(135deg, #0f334c 0%, #547891 100%)";
       }
       @keyframes loading {
         to {

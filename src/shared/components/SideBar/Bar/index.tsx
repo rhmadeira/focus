@@ -9,8 +9,12 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { ContentBar } from "./styles";
+import { ToggleThemeSwitch } from "./ToggleThemeSwitch";
+import { useAppThemeContext } from "../../../context/ThemeContext";
 
 export default function Bar() {
+  const { toggleTheme } = useAppThemeContext();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -109,21 +113,29 @@ export default function Bar() {
     </Menu>
   );
 
+  //-------------
+  const handleToggleTheme = () => {
+    toggleTheme();
+  };
+
   return (
     <Box>
       <ContentBar>
+        <ToggleThemeSwitch onChange={handleToggleTheme} />
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          {/* New Messages */}
           <IconButton
-            size="large"
+            size="small"
             aria-label="show 4 new mails"
             color="inherit"
           >
-            <Badge badgeContent={2} color="error">
+            <Badge badgeContent={1} color="error">
               <MailIcon />
             </Badge>
           </IconButton>
+          {/* New Notifications */}
           <IconButton
-            size="large"
+            size="small"
             aria-label="show 17 new notifications"
             color="inherit"
           >
@@ -131,8 +143,9 @@ export default function Bar() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          {/* Profile */}
           <IconButton
-            size="large"
+            size="small"
             edge="end"
             aria-label="account of current user"
             aria-controls={menuId}
@@ -143,10 +156,10 @@ export default function Bar() {
             <AccountCircle />
           </IconButton>
         </Box>
-
+        {/* Mobile */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton
-            size="large"
+            size="small"
             aria-label="show more"
             aria-controls={mobileMenuId}
             aria-haspopup="true"

@@ -9,7 +9,7 @@ export const openedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  backgroundColor: theme.palette.primary.contrastText,
+  // backgroundColor: theme.palette.primary.contrastText,
   boxSizing: "initial",
   overflowX: "hidden",
 });
@@ -20,7 +20,10 @@ export const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.main
+      : theme.palette.background.paper,
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -41,7 +44,6 @@ export const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  background: theme.palette.primary.main,
   position: "fixed",
   height: 64,
   border: "none",
@@ -79,7 +81,11 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? theme.palette.primary.main
+      : theme.palette.background.paper,
+  height: "64px",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
