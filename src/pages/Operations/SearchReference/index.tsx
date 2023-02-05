@@ -36,7 +36,7 @@ const schemaSearchApi = schemaSearchRef.transform((data) => {
 
 export type SearchRefFormData = zod.infer<typeof schemaSearchRef>;
 
-export default function SearchRef() {
+export default function SearchReference() {
   const { control, handleSubmit } = useForm<SearchRefFormData>({
     resolver: zodResolver(schemaSearchRef),
   });

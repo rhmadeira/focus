@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import App from "./App";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./shared/context/AuthContext";
 import { globalStyles } from "./shared/themes/global";
 import { AppThemeProvider } from "./shared/context/ThemeContext";
 import { DarkTheme, LightTheme } from "./shared/themes";

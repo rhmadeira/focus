@@ -1,19 +1,15 @@
 import { Outlet } from "react-router-dom";
-import TitleBasic from "../../components/shared/TitleBasic";
-import { ContainerAll, ContainerNav } from "./styles";
-import SubNavOperation from "./components/SubNavOperation";
-import { ContainerPages } from "../../shared/themes/global";
+import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
+import { Box } from "@mui/material";
+import NavOperations from "./components/NavOperations";
 
-export default function Operacoes() {
+export default function Operations() {
   return (
-    <ContainerAll>
-      <TitleBasic>Operações</TitleBasic>
-      <ContainerPages>
-        <ContainerNav>
-          <SubNavOperation />
-        </ContainerNav>
+    <LayoutBasePage title="Operações">
+      <NavOperations />
+      <Box flex={1} overflow="auto">
         <Outlet />
-      </ContainerPages>
-    </ContainerAll>
+      </Box>
+    </LayoutBasePage>
   );
 }

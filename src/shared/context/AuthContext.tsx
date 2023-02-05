@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, ReactNode, useState } from "react";
-import { LoginData } from "../pages/Login";
+import { LoginData } from "../../pages/Login";
 
 interface AuthContextData {
   isLoading: boolean;

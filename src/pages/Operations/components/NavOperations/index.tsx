@@ -6,7 +6,7 @@ import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 
-export default function SubNavOperation() {
+export default function NavOperations() {
   const [value, setValue] = React.useState(0);
 
   return (

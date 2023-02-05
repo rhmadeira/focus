@@ -8,11 +8,11 @@ import {
   ContainerForm,
 } from "./styles";
 import Logo from "../../assets/logoblue.svg";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../shared/context/AuthContext";
 
 const loginSchema = zod.object({
   email: zod.string().email(),
@@ -38,19 +38,17 @@ export default function Login() {
         <form onSubmit={handleSubmit(handleLogin)}>
           <img src={Logo} alt="logo" width={200} />
           <TitleLogin>Login</TitleLogin>
-          <Controller
-            control={control}
-            name="email"
-            defaultValue=""
-            render={({ field }) => <InputBasic label="E-mail:" field={field} />}
+          <InputBasic
+            controller={{ control, name: "email", defaultValue: "" }}
+            label="E-mail:"
+            size="small"
+            type="text"
           />
-          <Controller
-            control={control}
-            name="password"
-            defaultValue=""
-            render={({ field }) => (
-              <InputBasic label="Senha:" type="password" field={field} />
-            )}
+          <InputBasic
+            controller={{ control, name: "password", defaultValue: "" }}
+            label="Senha:"
+            size="small"
+            type="password"
           />
           <div>
             <ButtonBasic>Entrar</ButtonBasic>

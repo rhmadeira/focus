@@ -39,9 +39,6 @@ export function LayoutBasePage({ children, title }: ILayoutBasePageProps) {
       </Box>
       <Box padding={"0 20px"} display="flex" flexDirection="column" gap={2}>
         <Box>{children}</Box>
-        <Box flex={1} overflow="auto">
-          <Outlet />
-        </Box>
       </Box>
     </Box>
   );
