@@ -9,7 +9,7 @@ interface IToggleThemeSwitchProps {
 export function ToggleThemeSwitch({ onChange }: IToggleThemeSwitchProps) {
   return (
     <FormControlLabel
-      control={<MaterialUISwitch sx={{ m: 1 }} />}
+      control={<MaterialUISwitch sx={{ m: 0 }} size="small" />}
       label=""
       onChange={onChange}
     />

@@ -10,10 +10,10 @@ import ListItem from "@mui/material/ListItem";
 import { Link, Outlet } from "react-router-dom";
 import { AppBar, Drawer, DrawerBasic, DrawerHeader } from "./styles";
 import Logo from "../../../assets/logo.svg";
-import Bar from "./Bar";
 import { LinkSideBar } from "./LinkSideBar";
 import { Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
+import { ProfileBtn } from "./ProfileBtn";
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -54,7 +54,7 @@ export default function MiniDrawer() {
             <img src={Logo} alt="logo" width={120} />
           </Link>
           <div style={{ marginLeft: "auto" }}>
-            <Bar />
+            <ProfileBtn />
           </div>
         </Toolbar>
       </AppBar>
