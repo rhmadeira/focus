@@ -1,3 +1,10 @@
-export default function Not() {
-  return <h1>404</h1>;
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+export function NotFound() {
+  return (
+    <Box>
+      <Typography>404</Typography>
+    </Box>
+  );
 }

@@ -5,5 +5,9 @@ interface ISubTitleProps {
 }
 
 export default function SubTitle({ children }: ISubTitleProps) {
-  return <Typography>{children}</Typography>;
+  return (
+    <Typography variant="h6" component="h2">
+      {children}
+    </Typography>
+  );
 }

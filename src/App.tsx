@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Login from "./pages/Login";
+import { AppRoutes } from "./routes/AppRautes";
 import { AuthContext } from "./shared/context/AuthContext";
-import { AppRoutes } from "./shared/routes/AppRautes";
 
 function App() {
   // const { token } = useContext(AuthContext);

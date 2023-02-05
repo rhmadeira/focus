@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../../pages/Home";
-import NotFound from "../../pages/NotFound";
-import Operations from "../../pages/Operations";
-import SearchReference from "../../pages/Operations/SearchReference";
-import Registration from "../../pages/Registration";
-import Collaborators from "../../pages/Registration/Collaborators";
-import Companies from "../../pages/Registration/Companies";
-import SearchRegistration from "../../pages/Registration/SearchRegistration";
-import Ticket from "../../pages/Ticket";
-import LayoutSideBar from "../layouts/LayoutSideBar";
+import Home from "../pages/Home";
+import { NotFound } from "../pages/NotFound";
+import Operations from "../pages/Operations";
+import SearchReference from "../pages/Operations/SearchReference";
+import Registration from "../pages/Registration";
+import Collaborators from "../pages/Registration/Collaborators";
+import Companies from "../pages/Registration/Companies";
+import SearchRegistration from "../pages/Registration/SearchRegistration";
+import Ticket from "../pages/Ticket";
+import LayoutSideBar from "../shared/layouts/LayoutSideBar";
 
 export function AppRoutes() {
   return (

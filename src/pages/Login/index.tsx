@@ -1,5 +1,3 @@
-import ButtonBasic from "../../components/shared/ButtonBasic";
-import InputBasic from "../../components/shared/Inputs/InputBasic";
 import {
   ContainerAll,
   Footer,
@@ -13,6 +11,8 @@ import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { AuthContext } from "../../shared/context/AuthContext";
+import InputControlled from "../../shared/components/InputControlled";
+import { Button } from "@mui/material";
 
 const loginSchema = zod.object({
   email: zod.string().email(),
@@ -38,20 +38,22 @@ export default function Login() {
         <form onSubmit={handleSubmit(handleLogin)}>
           <img src={Logo} alt="logo" width={200} />
           <TitleLogin>Login</TitleLogin>
-          <InputBasic
+          <InputControlled
             controller={{ control, name: "email", defaultValue: "" }}
             label="E-mail:"
             size="small"
             type="text"
           />
-          <InputBasic
+          <InputControlled
             controller={{ control, name: "password", defaultValue: "" }}
             label="Senha:"
             size="small"
             type="password"
           />
           <div>
-            <ButtonBasic>Entrar</ButtonBasic>
+            <Button variant="contained" type="submit">
+              Entrar
+            </Button>
           </div>
         </form>
         <Footer>

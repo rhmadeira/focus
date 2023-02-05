@@ -2,11 +2,13 @@ import {
   Box,
   Icon,
   IconButton,
+  Paper,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import { Title } from "./styles";
 
 interface ILayoutBasePageProps {
   children?: React.ReactNode;
@@ -24,18 +26,20 @@ export function LayoutBasePage({ children, title }: ILayoutBasePageProps) {
         height={smDown ? theme.spacing(6) : theme.spacing(8)}
         display="flex"
         alignItems="center"
-        bgcolor={theme.palette.background.paper}
+        component={Paper}
+        elevation={0}
+
+        // bgcolor={theme.palette.background.paper}
       >
-        <Typography
+        <Title
           variant={smDown ? "h6" : mdDown ? "h5" : "h4"}
           whiteSpace="nowrap"
-          component="h1"
           padding="16px 20px"
           overflow="hidden"
           textOverflow="ellipsis"
         >
           {title}
-        </Typography>
+        </Title>
       </Box>
       <Box padding={"0 20px"} display="flex" flexDirection="column" gap={2}>
         <Box>{children}</Box>
