@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
-import { ContainerAll } from "./styles";
 
 export default function Home() {
   return (
