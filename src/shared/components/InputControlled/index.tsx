@@ -16,31 +16,11 @@ export default function InputControlled<T extends object>({
         <Controller
           {...controller}
           render={({ field }) => (
-            <TextField
-              variant="outlined"
-              sx={{
-                backgroundColor: "white",
-                borderRadius: "5px",
-                border: "none",
-                fontSize: "1rem",
-                minWidth: "100%",
-              }}
-              {...props}
-              {...field}
-            />
+            <TextField variant="outlined" fullWidth {...props} {...field} />
           )}
         />
       ) : (
-        <TextField
-          variant="outlined"
-          sx={{
-            backgroundColor: "white",
-            borderRadius: "5px",
-            border: "none",
-            minWidth: 300,
-          }}
-          {...props}
-        />
+        <TextField variant="outlined" {...props} />
       )}
     </>
   );

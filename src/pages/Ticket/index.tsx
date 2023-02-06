@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import TitleBasic from "../../components/shared/TitleBasic";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 
 export default function Ticket() {

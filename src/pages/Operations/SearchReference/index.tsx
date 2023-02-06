@@ -1,10 +1,11 @@
 import Button from "@mui/material/Button";
-import InputBasic from "../../../components/shared/Inputs/InputBasic";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
 import { useForm } from "react-hook-form";
 import { Box } from "@mui/material";
 import SubTitle from "../../../shared/components/SubTitle";
+import InputControlled from "../../../shared/components/InputControlled";
+import Paper from "@mui/material/Paper";
 
 const schemaSearchRef = zod.object({
   // dateStart: zod.instanceof(dayjs as unknown as typeof Dayjs).optional(),
@@ -36,48 +37,70 @@ export default function SearchReference() {
   return (
     <Box display="flex" flexDirection="column" gap={2} marginTop="10px">
       <SubTitle>Busca de Referência:</SubTitle>
-      <Box component="form" onSubmit={handleSubmit(handleSearchRef)}>
-        <InputBasic
-          controller={{
-            control,
-            name: "company",
-            defaultValue: "",
-          }}
-          label="Empresa"
-          size="small"
-          type="text"
-        />
-        <InputBasic
-          controller={{
-            control,
-            name: "reference",
-            defaultValue: "",
-          }}
-          label="Referência"
-          size="small"
-        />
-        <InputBasic
-          controller={{
-            control,
-            name: "number",
-            defaultValue: "",
-          }}
-          label="Número"
-          size="small"
-        />
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2}
+        component="form"
+        onSubmit={handleSubmit(handleSearchRef)}
+      >
+        <Box
+          component={Paper}
+          display="flex"
+          flexDirection="column"
+          padding={2}
+          gap={1}
+          maxWidth="600px"
+        >
+          <Box display="flex" gap={1} flexWrap={{ xs: "wrap", sm: "nowrap" }}>
+            <InputControlled
+              controller={{
+                control,
+                name: "company",
+                defaultValue: "",
+              }}
+              label="Empresa"
+              size="small"
+              type="text"
+            />
+            <InputControlled
+              controller={{
+                control,
+                name: "reference",
+                defaultValue: "",
+              }}
+              label="Referência"
+              size="small"
+            />
+          </Box>
+          <Box display="flex" gap={1} flexWrap={{ xs: "wrap", sm: "nowrap" }}>
+            <InputControlled
+              controller={{
+                control,
+                name: "number",
+                defaultValue: "",
+              }}
+              label="Número"
+              size="small"
+            />
 
-        <InputBasic
-          controller={{
-            control,
-            name: "nRPS",
-            defaultValue: "",
-          }}
-          label="N.RPS"
-          size="small"
-        />
-        <Button type="submit" variant="contained">
-          Buscar
-        </Button>
+            <InputControlled
+              controller={{
+                control,
+                name: "nRPS",
+                defaultValue: "",
+              }}
+              label="N.RPS"
+              size="small"
+            />
+          </Box>
+
+          <Box>
+            <Button type="submit" variant="contained" size="small">
+              Buscar
+            </Button>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

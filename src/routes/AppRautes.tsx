@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import Operations from "../pages/Operations";
 import SearchReference from "../pages/Operations/SearchReference";
+import { Profile } from "../pages/Profile";
 import Registration from "../pages/Registration";
 import Collaborators from "../pages/Registration/Collaborators";
 import Companies from "../pages/Registration/Companies";
@@ -24,6 +25,7 @@ export function AppRoutes() {
           <Route path="empresa" element={<Companies />} />
         </Route>
         <Route path="boleto" element={<Ticket />} />
+        <Route path="perfil" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

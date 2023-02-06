@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { cyan, yellow } from "@mui/material/colors";
+import { cyan, grey, yellow } from "@mui/material/colors";
 import { ptBR } from "@mui/material/locale";
 
 export const DarkTheme = createTheme(
@@ -19,8 +19,8 @@ export const DarkTheme = createTheme(
         contrastText: "#ffffff",
       },
       background: {
-        default: "#303134",
-        paper: "#202124",
+        default: grey[800],
+        paper: grey[900],
       },
     },
     typography: {

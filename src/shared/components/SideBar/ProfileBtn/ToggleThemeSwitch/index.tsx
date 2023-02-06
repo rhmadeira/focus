@@ -1,5 +1,4 @@
-import { FormControlLabel } from "@mui/material";
-import Switch from "@mui/material/Switch";
+import { Box, FormControlLabel } from "@mui/material";
 import { MaterialUISwitch } from "./styles";
 
 interface IToggleThemeSwitchProps {

@@ -1,10 +1,7 @@
-import TitleSub from "../../../components/shared/TitleSub";
-import { ContainerAll } from "../styles";
+import { Box } from "@mui/material";
 
 export default function Collaborators() {
   return (
-    <ContainerAll>
-      <TitleSub>Adicionar Colaborador:</TitleSub>
-    </ContainerAll>
+    <Box display="flex" flexDirection="column" gap={2} marginTop="10px"></Box>
   );
 }

@@ -11,13 +11,16 @@ import { Link, Outlet } from "react-router-dom";
 import { AppBar, Drawer, DrawerBasic, DrawerHeader } from "./styles";
 import Logo from "../../../assets/logo.svg";
 import { LinkSideBar } from "./LinkSideBar";
-import { Box } from "@mui/material";
+import { Box, ListItemButton } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { ProfileBtn } from "./ProfileBtn";
+import { ToggleThemeSwitch } from "./ProfileBtn/ToggleThemeSwitch";
+import { useAppThemeContext } from "../../context";
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const { toggleTheme } = useAppThemeContext();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleDrawerOpen = () => {
@@ -61,7 +64,7 @@ export default function MiniDrawer() {
       <Drawer
         variant="permanent"
         open={open}
-        style={{ backgroundColor: "transparent" }}
+        // style={{ backgroundColor: "transparent" }}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose} sx={{ color: "white" }}>
@@ -102,6 +105,9 @@ export default function MiniDrawer() {
             <LinkSideBar icon="paid" open={open} label="Boletos" to="/boleto" />
           </ListItem>
         </List>
+        <Box margin={"auto auto 10px auto"}>
+          <ToggleThemeSwitch onChange={() => toggleTheme()} />
+        </Box>
       </Drawer>
       <Box
         component="main"

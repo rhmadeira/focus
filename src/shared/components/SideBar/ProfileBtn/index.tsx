@@ -4,32 +4,30 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { ToggleThemeSwitch } from "./ToggleThemeSwitch";
 import { useAppThemeContext } from "../../../context/ThemeContext";
 import Icon from "@mui/material/Icon";
+import { useNavigate } from "react-router-dom";
 
 export function ProfileBtn() {
+  const navigate = useNavigate();
   const [isMenuPerfil, setIsMenuPerfil] = React.useState<null | HTMLElement>(
     null
   );
-  const { toggleTheme } = useAppThemeContext();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setIsMenuPerfil(event.currentTarget);
   };
-  const handleClose = () => {
+
+  function handleClickedProfile() {
     setIsMenuPerfil(null);
-  };
-  const handleToggleTheme = () => {
-    toggleTheme();
-  };
+    navigate("/perfil");
+  }
 
   return (
-    <Box>
-      <ToggleThemeSwitch onChange={handleToggleTheme} />
+    <Box display="flex" gap={1}>
       <IconButton
-        size="large"
-        aria-label="account of current user"
+        size="small"
+        aria-label="Conta do usuário atual"
         aria-controls="menu-appbar"
         aria-haspopup="true"
         onClick={handleMenu}
@@ -50,10 +48,10 @@ export function ProfileBtn() {
           horizontal: "right",
         }}
         open={Boolean(isMenuPerfil)}
-        onClose={handleClose}
+        onClose={() => setIsMenuPerfil(null)}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClickedProfile}>Perfil do Usuário</MenuItem>
+        <MenuItem onClick={handleClickedProfile}>Configurações</MenuItem>
       </Menu>
     </Box>
   );

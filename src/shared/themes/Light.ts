@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { blue, cyan, yellow } from "@mui/material/colors";
+import { blue, cyan, grey, yellow } from "@mui/material/colors";
 import { ptBR } from "@mui/material/locale";
 
 export const LightTheme = createTheme(
@@ -19,8 +19,8 @@ export const LightTheme = createTheme(
         contrastText: "#ffffff",
       },
       background: {
-        default: "#dadada",
-        paper: "#ffffff",
+        default: grey[300],
+        paper: grey[200],
       },
     },
   },
