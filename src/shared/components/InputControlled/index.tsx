@@ -20,7 +20,7 @@ export default function InputControlled<T extends object>({
           )}
         />
       ) : (
-        <TextField variant="outlined" {...props} />
+        <TextField variant="outlined" fullWidth {...props} />
       )}
     </>
   );

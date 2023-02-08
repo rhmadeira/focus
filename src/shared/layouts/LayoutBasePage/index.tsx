@@ -41,8 +41,15 @@ export function LayoutBasePage({ children, title }: ILayoutBasePageProps) {
           {title}
         </Title>
       </Box>
-      <Box padding={"0 20px"} display="flex" flexDirection="column" gap={2}>
-        <Box>{children}</Box>
+      <Box
+        // height="100%"
+        padding={"0 20px"}
+        display="flex"
+        flexDirection="column"
+        gap={2}
+        flex={1}
+      >
+        {children}
       </Box>
     </Box>
   );

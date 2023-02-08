@@ -35,24 +35,37 @@ export default function SearchReference() {
     console.log(apiData);
   }
   return (
-    <Box display="flex" flexDirection="column" gap={2} marginTop="10px">
-      <SubTitle>Busca de Referência:</SubTitle>
+    <Box
+      display="flex"
+      flexDirection="column"
+      flex="1"
+      alignItems="center"
+      gap={2}
+      marginTop="10px"
+    >
       <Box
         display="flex"
         flexDirection="column"
         gap={2}
         component="form"
         onSubmit={handleSubmit(handleSearchRef)}
+        width="70%"
       >
+        <SubTitle>Buscar Referência:</SubTitle>
+
         <Box
           component={Paper}
           display="flex"
           flexDirection="column"
           padding={2}
           gap={1}
-          maxWidth="600px"
         >
-          <Box display="flex" gap={1} flexWrap={{ xs: "wrap", sm: "nowrap" }}>
+          <Box
+            display="flex"
+            flex={1}
+            gap={1}
+            flexWrap={{ xs: "wrap", sm: "nowrap" }}
+          >
             <InputControlled
               controller={{
                 control,
@@ -73,7 +86,13 @@ export default function SearchReference() {
               size="small"
             />
           </Box>
-          <Box display="flex" gap={1} flexWrap={{ xs: "wrap", sm: "nowrap" }}>
+
+          <Box
+            display="flex"
+            flex={1}
+            gap={1}
+            flexWrap={{ xs: "wrap", sm: "nowrap" }}
+          >
             <InputControlled
               controller={{
                 control,
