@@ -2,10 +2,11 @@ import Button from "@mui/material/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
 import { useForm } from "react-hook-form";
-import { Box } from "@mui/material";
+import { Box, Theme, Typography, useMediaQuery } from "@mui/material";
 import SubTitle from "../../../shared/components/SubTitle";
 import InputControlled from "../../../shared/components/InputControlled";
 import Paper from "@mui/material/Paper";
+import MuiDataPicker from "../../../shared/components/MuiDataPicker";
 
 const schemaSearchRef = zod.object({
   // dateStart: zod.instanceof(dayjs as unknown as typeof Dayjs).optional(),
@@ -29,6 +30,7 @@ export default function SearchReference() {
   const { control, handleSubmit } = useForm<SearchRefFormData>({
     resolver: zodResolver(schemaSearchRef),
   });
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
   function handleSearchRef(data: SearchRefFormData) {
     const apiData = schemaSearchApi.parse(data);
@@ -49,7 +51,7 @@ export default function SearchReference() {
         gap={2}
         component="form"
         onSubmit={handleSubmit(handleSearchRef)}
-        width="70%"
+        width={smDown ? "auto" : "70%"}
       >
         <SubTitle>Buscar Referência:</SubTitle>
 
@@ -60,6 +62,16 @@ export default function SearchReference() {
           padding={2}
           gap={1}
         >
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={2}
+            flexWrap={{ xs: "wrap", sm: "nowrap" }}
+          >
+            <MuiDataPicker textPlaceholder="Data inicial" />
+            {smDown ? null : <Typography component="span">Até</Typography>}
+            <MuiDataPicker textPlaceholder="Data final" />
+          </Box>
           <Box
             display="flex"
             flex={1}

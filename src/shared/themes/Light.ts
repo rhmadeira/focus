@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material";
 import { blue, cyan, grey, yellow } from "@mui/material/colors";
-import { ptBR } from "@mui/material/locale";
+import { ptBR } from "@mui/x-date-pickers";
 
 export const LightTheme = createTheme(
   {
