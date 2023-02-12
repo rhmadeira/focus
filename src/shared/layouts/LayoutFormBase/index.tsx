@@ -10,6 +10,8 @@ export default function LayoutFormBase({
   children,
 }: ILayoutFormBaseProps) {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
   return (
     <Box
@@ -18,13 +20,13 @@ export default function LayoutFormBase({
       gap={2}
       component="form"
       onSubmit={handleSearch}
-      width={smDown ? "auto" : "90%"}
+      width={smDown ? "99%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
     >
       <Box
         component={Paper}
         display="flex"
         flexDirection="column"
-        padding={4}
+        padding={smDown ? 1 : mdDown ? 2 : lgDown ? 3 : 4}
         gap={1}
       >
         {children}

@@ -2,12 +2,13 @@ import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
 import StepperForm from "./StepperForm";
+import { zodResolver } from "@hookform/resolvers/zod";
 import TabForm from "./TabForm";
 
 export default function Companies() {
-  const { handleSubmit } = useForm();
-  function handleNewCompany() {
-    console.log("new company");
+  const { handleSubmit, control } = useForm({});
+  function handleNewCompanyMobile(data: any) {
+    console.log(data);
   }
   return (
     <Box
@@ -18,10 +19,7 @@ export default function Companies() {
       flex="1"
       alignItems="center"
     >
-      <LayoutFormBase handleSearch={handleSubmit(handleNewCompany)}>
-        <StepperForm />
-        {/* <TabForm /> */}
-      </LayoutFormBase>
+      <StepperForm />
     </Box>
   );
 }

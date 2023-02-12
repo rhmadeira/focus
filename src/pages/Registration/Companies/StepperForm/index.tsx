@@ -5,12 +5,15 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Theme, useMediaQuery } from "@mui/material";
+import { Divider, StepContent, Theme, useMediaQuery } from "@mui/material";
+import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
+import { useForm } from "react-hook-form";
+import InputControlled from "../../../../shared/components/InputControlled";
+import SelectControlled from "../../../../shared/components/SelectControlled";
 
 const steps = [
   "Identificação",
-  "Contato",
-  "Endereço",
+  "Contato/Endereço",
   "Responsável",
   "Contabilidade",
   "Tokens",
@@ -21,6 +24,7 @@ export default function StepperForm() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const { handleSubmit, control } = useForm();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -31,64 +35,174 @@ export default function StepperForm() {
     setSkipped(newSkipped);
   };
 
-  const handleSaveNewCompany = () => {
-    console.log("salvar");
+  function handleSaveNewCompanyMobile(data: any) {
+    console.log(data);
+  }
+  function handleSaveNewCompanyWeb(data: any) {
+    console.log(data);
+  }
+
+  const handleReset = () => {
+    setActiveStep(0);
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: {
-            optional?: React.ReactNode;
-          } = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+    <>
+      {!smDown ? (
+        <LayoutFormBase handleSearch={handleSubmit(handleSaveNewCompanyWeb)}>
+          <Box sx={{ width: "100%" }}>
+            <Stepper activeStep={activeStep}>
+              {steps.map((label, index) => {
+                const stepProps: { completed?: boolean } = {};
+                const labelProps: {
+                  optional?: React.ReactNode;
+                } = {};
+                return (
+                  <Step key={label} {...stepProps}>
+                    <StepLabel {...labelProps}>{label}</StepLabel>
+                  </Step>
+                );
+              })}
+            </Stepper>
+            <Divider sx={{ marginTop: "10px" }} />
+            <>
+              <Box marginTop={2}>
+                {activeStep === 0 ? (
+                  <Box>
+                    <InputControlled
+                      controller={{ name: "cnpj", control, defaultValue: "" }}
+                      size="small"
+                      label="CNPJ"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "nomeFantasia",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Nome Fantasia"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "inscricaoEstadual",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Inscrição Estadual"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "inscricaoMunicipal",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Inscrição Municipal"
+                    />
+                    <SelectControlled
+                      controller={{ name: "regime", control, defaultValue: "" }}
+                      size="small"
+                      textSelect="Regime Tributário"
+                      arrayMenuItem={[
+                        { index: 1, label: "Simples Nacional" },
+                        { index: 2, label: "Simples Nacional receita bruta" },
+                        { index: 3, label: "Regime Normal" },
+                      ]}
+                    />
+                  </Box>
+                ) : activeStep === 1 ? (
+                  <Box>
+                    <InputControlled
+                      controller={{
+                        name: "emal",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="E-mail"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "telefone",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Telefone"
+                    />
+                  </Box>
+                ) : null}
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                <Button
+                  variant="contained"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Voltar
+                </Button>
+                <Box sx={{ flex: "1 1 auto" }} />
+                {activeStep === steps.length - 1 ? (
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    // onClick={handleSaveNewCompanyWeb}
+                  >
+                    Salvar
+                  </Button>
+                ) : (
+                  <Button variant="contained" onClick={handleNext}>
+                    Próximo
+                  </Button>
+                )}
+              </Box>
+            </>
+          </Box>
+        </LayoutFormBase>
+      ) : (
+        <Stepper activeStep={activeStep} orientation="vertical">
+          {steps.map((step, index) => (
+            <Step component="form" key={step}>
+              <StepLabel
+                optional={
+                  index === 2 ? (
+                    <Typography variant="caption">Last step</Typography>
+                  ) : null
+                }
+              >
+                {step}
+              </StepLabel>
+
+              <StepContent>
+                <Box>"nada"</Box>
+                <Box sx={{ mb: 2 }}>
+                  <div>
+                    {activeStep === steps.length - 1 ? (
+                      <Button type="submit" variant="contained">
+                        Salvar
+                      </Button>
+                    ) : (
+                      <Button variant="contained" onClick={handleNext}>
+                        Próximo
+                      </Button>
+                    )}
+                    <Button
+                      disabled={index === 0}
+                      onClick={handleBack}
+                      sx={{ mt: 1, mr: 1 }}
+                    >
+                      Voltar
+                    </Button>
+                  </div>
+                </Box>
+              </StepContent>
             </Step>
-          );
-        })}
-      </Stepper>
-      <React.Fragment>
-        <Box>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            {" "}
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-            error odit nemo beatae rem, amet nihil recusandae sapiente. Dolor
-            fugiat architecto illo, ipsam deleniti quae temporibus odio
-            accusamus asperiores quas. lorem Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Quibusdam, vero sint tempora enim,
-            recusandae cupiditate corporis fugit eius, ea doloremque labore
-            similique? Aut, similique error impedit consequatur maiores
-            veritatis nostrum. Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Sint repudiandae, officia vero possimus obcaecati
-            adipisci et nam quos, recusandae explicabo nobis perferendis
-            assumenda nemo voluptatum neque eligendi sed quo praesentium?
-            {activeStep + 1}
-          </Typography>
-        </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-          <Button
-            variant="contained"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-          >
-            Voltar
-          </Button>
-          <Box sx={{ flex: "1 1 auto" }} />
-          {activeStep === steps.length - 1 ? (
-            <Button variant="contained" onClick={handleSaveNewCompany}>
-              Salvar
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={handleNext}>
-              Próximo
-            </Button>
-          )}
-        </Box>
-      </React.Fragment>
-    </Box>
+          ))}
+        </Stepper>
+      )}
+    </>
   );
 }
