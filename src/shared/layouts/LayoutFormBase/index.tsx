@@ -20,7 +20,7 @@ export default function LayoutFormBase({
       gap={2}
       component="form"
       onSubmit={handleSearch}
-      width={smDown ? "99%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
+      width={smDown ? "100%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
     >
       <Box
         component={Paper}

@@ -1,13 +1,4 @@
-import {
-  Box,
-  Icon,
-  IconButton,
-  Paper,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Box, Paper, useMediaQuery, useTheme } from "@mui/material";
 import { Title } from "./styles";
 
 interface ILayoutBasePageProps {
@@ -43,7 +34,7 @@ export function LayoutBasePage({ children, title }: ILayoutBasePageProps) {
       </Box>
       <Box
         // height="100%"
-        padding={"0 20px"}
+        padding={!smDown ? "0 20px" : "0 5px"}
         display="flex"
         flexDirection="column"
         gap={2}
