@@ -26,7 +26,7 @@ export default function Collaborators() {
       alignItems="center"
     >
       <LayoutFormBase handleSearch={handleSubmit(handleNewCollaborators)}>
-        <SubTitle>Novo Colaborador:</SubTitle>
+        <SubTitle>Novo Colaborador</SubTitle>
         <Divider />
         <Box
           display="flex"

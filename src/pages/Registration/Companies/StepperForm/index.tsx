@@ -5,7 +5,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Divider, StepContent, Theme, useMediaQuery } from "@mui/material";
+import { Divider, Theme, useMediaQuery } from "@mui/material";
 import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
 import { useForm } from "react-hook-form";
 import InputControlled from "../../../../shared/components/InputControlled";
@@ -26,7 +26,7 @@ export default function StepperForm() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, watch } = useForm();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -44,92 +44,202 @@ export default function StepperForm() {
   const handleReset = () => {
     setActiveStep(0);
   };
-  console.log(activeStep);
+
+  const chekedPerson = watch("pessoa");
+  console.log(chekedPerson);
 
   return (
     <>
       <LayoutFormBase handleSearch={handleSubmit(handleSaveNewCompany)}>
+        <SubTitle>Nova Empresa</SubTitle>
+        <Divider />
         <Box sx={{ width: "100%" }}>
           <Stepper activeStep={activeStep}>
             {steps.map((label, index) => {
               const stepProps: { completed?: boolean } = {};
               return (
-                <Step key={label} {...stepProps}>
+                <Step key={label}>
                   <StepLabel>{!mdDown ? label : null}</StepLabel>
                 </Step>
               );
             })}
           </Stepper>
-          <Divider sx={{ marginTop: "10px" }} />
           <>
             <Box marginTop={2}>
+              {/* Identificação */}
               {activeStep === 0 ? (
-                <Box>
+                <Box display="flex" flexDirection="column" gap={1}>
                   {mdDown ? <SubTitle>Identificação:</SubTitle> : null}
-                  <InputControlled
-                    controller={{ name: "cnpj", control, defaultValue: "" }}
-                    size="small"
-                    label="CNPJ"
-                  />
-                  <InputControlled
-                    controller={{
-                      name: "nomeFantasia",
-                      control,
-                      defaultValue: "",
-                    }}
-                    size="small"
-                    label="Nome Fantasia"
-                  />
-                  <InputControlled
-                    controller={{
-                      name: "inscricaoEstadual",
-                      control,
-                      defaultValue: "",
-                    }}
-                    size="small"
-                    label="Inscrição Estadual"
-                  />
-                  <InputControlled
-                    controller={{
-                      name: "inscricaoMunicipal",
-                      control,
-                      defaultValue: "",
-                    }}
-                    size="small"
-                    label="Inscrição Municipal"
-                  />
-                  <SelectControlled
-                    controller={{ name: "regime", control, defaultValue: "" }}
-                    size="small"
-                    textSelect="Regime Tributário"
-                    arrayMenuItem={[
-                      { index: 1, label: "Simples Nacional" },
-                      { index: 2, label: "Simples Nacional receita bruta" },
-                      { index: 3, label: "Regime Normal" },
-                    ]}
-                  />
+                  <Box
+                    display="flex"
+                    flex={1}
+                    gap={1}
+                    flexWrap={{ xs: "wrap", sm: "nowrap" }}
+                  >
+                    {" "}
+                    <SelectControlled
+                      controller={{ name: "pessoa", control, defaultValue: "" }}
+                      size="small"
+                      textSelect="Tipo de pessoa"
+                      arrayMenuItem={[
+                        { index: 1, label: "Física" },
+                        { index: 2, label: "Jurídica" },
+                      ]}
+                    />
+                    {chekedPerson === 1 ? (
+                      <InputControlled
+                        controller={{
+                          name: "cpf",
+                          control,
+                          defaultValue: "",
+                        }}
+                        size="small"
+                        label="CPF"
+                      />
+                    ) : (
+                      <InputControlled
+                        controller={{ name: "cnpj", control, defaultValue: "" }}
+                        size="small"
+                        label="CNPJ"
+                      />
+                    )}
+                    <InputControlled
+                      controller={{
+                        name: "nomeFantasia",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Nome Fantasia"
+                    />
+                  </Box>
+                  <Box
+                    display="flex"
+                    flex={1}
+                    gap={1}
+                    flexWrap={{ xs: "wrap", sm: "nowrap" }}
+                  >
+                    <InputControlled
+                      controller={{
+                        name: "inscricaoEstadual",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Inscrição Estadual"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "inscricaoMunicipal",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Inscrição Municipal"
+                    />
+                    <SelectControlled
+                      controller={{ name: "regime", control, defaultValue: "" }}
+                      size="small"
+                      textSelect="Regime Tributário"
+                      arrayMenuItem={[
+                        { index: 1, label: "Simples Nacional" },
+                        { index: 2, label: "Simples Nacional receita bruta" },
+                        { index: 3, label: "Regime Normal" },
+                      ]}
+                    />
+                  </Box>
                 </Box>
               ) : activeStep === 1 ? (
-                <Box>
+                <Box display="flex" flexDirection="column" gap={1}>
                   {mdDown ? <SubTitle>Contato/Endereço:</SubTitle> : null}
-                  <InputControlled
-                    controller={{
-                      name: "emal",
-                      control,
-                      defaultValue: "",
-                    }}
-                    size="small"
-                    label="E-mail"
-                  />
-                  <InputControlled
-                    controller={{
-                      name: "telefone",
-                      control,
-                      defaultValue: "",
-                    }}
-                    size="small"
-                    label="Telefone"
-                  />
+                  <Typography variant="body2">Contato</Typography>{" "}
+                  <Box display="flex" maxWidth="800px" gap={1}>
+                    <InputControlled
+                      controller={{
+                        name: "email",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="E-mail"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "telefone",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Telefone"
+                    />
+                  </Box>
+                  <Typography variant="body2">Endereço</Typography>{" "}
+                  <Box>
+                    {" "}
+                    <InputControlled
+                      controller={{
+                        name: "cep",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="CEP"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "logradouro",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Logradouro"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "numero",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Número"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "complemento",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Complemento"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "bairro",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Bairro"
+                    />
+                    <InputControlled
+                      controller={{
+                        name: "cidade",
+                        control,
+                        defaultValue: "",
+                      }}
+                      size="small"
+                      label="Cidade"
+                    />
+                    <SelectControlled
+                      controller={{ name: "uf", control, defaultValue: "" }}
+                      size="small"
+                      textSelect="Estado"
+                      arrayMenuItem={[
+                        { index: 1, label: "ES" },
+                        { index: 2, label: "RJ" },
+                      ]}
+                    />
+                  </Box>
                 </Box>
               ) : activeStep === 2 ? (
                 <Box>
@@ -185,7 +295,9 @@ export default function StepperForm() {
                 </Box>
               ) : (
                 <Box>
-                  <Typography>fim</Typography>
+                  <Typography>
+                    Por favor verifique os dados e clique em salvar.
+                  </Typography>
                 </Box>
               )}
             </Box>
@@ -194,18 +306,20 @@ export default function StepperForm() {
                 variant="contained"
                 disabled={activeStep === 0}
                 onClick={handleBack}
+                size="small"
                 sx={{ mr: 1 }}
               >
                 Voltar
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
-              {activeStep === 6 ? (
-                <Button type="submit" variant="contained">
-                  Salvar
-                </Button>
-              ) : (
-                <Button variant="contained" onClick={handleNext}>
+              {activeStep !== steps.length && (
+                <Button size="small" variant="contained" onClick={handleNext}>
                   Próximo
+                </Button>
+              )}
+              {activeStep === steps.length && (
+                <Button variant="contained" size="small" type="submit">
+                  Salvar
                 </Button>
               )}
             </Box>

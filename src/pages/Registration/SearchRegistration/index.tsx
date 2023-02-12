@@ -39,7 +39,7 @@ export default function SearchRegistration() {
       marginTop="10px"
     >
       <LayoutFormBase handleSearch={handleSubmit(handleSearch)}>
-        <SubTitle>Buscar:</SubTitle>
+        <SubTitle>Buscar</SubTitle>
         <Divider />
         {/* <Box component={Paper} padding={2} maxWidth="600px"> */}
         <Box
