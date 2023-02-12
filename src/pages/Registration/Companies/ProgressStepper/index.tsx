@@ -5,7 +5,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Divider, Theme, useMediaQuery } from "@mui/material";
+import { Divider, Switch, Theme, useMediaQuery } from "@mui/material";
 import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
 import { useForm } from "react-hook-form";
 import InputControlled from "../../../../shared/components/InputControlled";
@@ -20,6 +20,12 @@ const steps = [
   "Tokens",
   "Documentos Fiscais",
 ];
+{
+  /* <FiscalDocuments
+                    controller={[{ name: "nfs", control, defaultValue: "" }]}
+                    label="NFs"
+                  /> */
+}
 
 export default function StepperForm() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -253,18 +259,27 @@ export default function StepperForm() {
                     size="small"
                     label="Nome"
                   />
+                  <InputControlled
+                    controller={{
+                      name: "cpfResponsavel",
+                      control,
+                      defaultValue: "",
+                    }}
+                    size="small"
+                    label="CPF"
+                  />
                 </Box>
               ) : activeStep === 3 ? (
                 <Box>
                   {mdDown ? <SubTitle>Contabilidade:</SubTitle> : null}
                   <InputControlled
                     controller={{
-                      name: "nomeContabilidade",
+                      name: "contabilidade",
                       control,
                       defaultValue: "",
                     }}
                     size="small"
-                    label="Nome"
+                    label="CPF/CNPJ"
                   />
                 </Box>
               ) : activeStep === 4 ? (
@@ -272,30 +287,31 @@ export default function StepperForm() {
                   {mdDown ? <SubTitle>Tokens:</SubTitle> : null}
                   <InputControlled
                     controller={{
-                      name: "token",
+                      name: "tokenHomologacao",
                       control,
                       defaultValue: "",
                     }}
                     size="small"
-                    label="Token"
+                    label="Token de Homologação"
+                  />
+                  <InputControlled
+                    controller={{
+                      name: "tokenProducao",
+                      control,
+                      defaultValue: "",
+                    }}
+                    size="small"
+                    label="Token de Produção"
                   />
                 </Box>
               ) : activeStep === 5 ? (
                 <Box>
                   {mdDown ? <SubTitle>Documentos Fiscais:</SubTitle> : null}
-                  <InputControlled
-                    controller={{
-                      name: "cnpjContabilidade",
-                      control,
-                      defaultValue: "",
-                    }}
-                    size="small"
-                    label="CNPJ"
-                  />
+                  <Switch name="emitirNf" />
                 </Box>
               ) : (
                 <Box>
-                  <Typography>
+                  <Typography variant="h4">
                     Por favor verifique os dados e clique em salvar.
                   </Typography>
                 </Box>
