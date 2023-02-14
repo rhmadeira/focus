@@ -7,7 +7,6 @@ export const globalStyles = (
     styles={css`
       html,
       body {
-        box-sizing: border-box;
         /* background: var(--gray100); */
 
         padding: 0;
@@ -27,6 +26,9 @@ export const globalStyles = (
       }
       body::-webkit-scrollbar {
         width: 4px;
+      }
+      * {
+        box-sizing: border-box;
       }
       /* body::-webkit-scrollbar-track {
         background: #03263a;

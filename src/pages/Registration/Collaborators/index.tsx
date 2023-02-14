@@ -1,4 +1,12 @@
-import { Box, Button, Divider, Icon, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Icon,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
 import { schemaNewCollaborator } from "../schemas/colaboratorsSchemas";
@@ -13,6 +21,7 @@ export default function Collaborators() {
   const { handleSubmit, control } = useForm<NewCollaboratorData>({
     resolver: zodResolver(schemaNewCollaborator),
   });
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   function handleNewCollaborators(data: NewCollaboratorData) {
     console.log(data);
   }
@@ -21,7 +30,7 @@ export default function Collaborators() {
       display="flex"
       flexDirection="column"
       gap={2}
-      marginTop="10px"
+      marginTop={smDown ? "10px" : "30px"}
       flex="1"
       alignItems="center"
     >
@@ -68,6 +77,7 @@ export default function Collaborators() {
           <Button
             type="submit"
             variant="contained"
+            size="small"
             startIcon={<Icon>add</Icon>}
           >
             Salvar
