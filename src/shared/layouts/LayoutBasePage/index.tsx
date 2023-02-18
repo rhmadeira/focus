@@ -39,6 +39,7 @@ export function LayoutBasePage({ children, title }: ILayoutBasePageProps) {
         flexDirection="column"
         gap={2}
         flex={1}
+        className="animeLeft"
       >
         {children}
       </Box>

@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import InputControlled from "../../../../shared/components/InputControlled";
 import SelectControlled from "../../../../shared/components/SelectControlled";
 import SubTitle from "../../../../shared/components/SubTitle";
+import FiscalDocuments from "./form/FiscalDocuments";
 
 const steps = [
   "Identificação",
@@ -20,12 +21,12 @@ const steps = [
   "Tokens",
   "Documentos Fiscais",
 ];
-{
-  /* <FiscalDocuments
-                    controller={[{ name: "nfs", control, defaultValue: "" }]}
-                    label="NFs"
-                  /> */
-}
+// {
+//   <FiscalDocuments
+//                     controller={[{ name: "nfs", control, defaultValue: "" }]}
+//                     label="NFs"
+//                   />
+// }
 
 export default function StepperForm() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -307,7 +308,11 @@ export default function StepperForm() {
               ) : activeStep === 5 ? (
                 <Box>
                   {mdDown ? <SubTitle>Documentos Fiscais:</SubTitle> : null}
-                  <Switch name="emitirNf" />
+                  <FiscalDocuments
+                    controller={[{ name: "nfs", control, defaultValue: "" }]}
+                    label="NFs"
+                  />
+                  {/* <Switch name="emitirNf" /> */}
                 </Box>
               ) : (
                 <Box>

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import InputControlled from "../../../../../shared/components/InputControlled";
+import InputControlled from "../../../../../../shared/components/InputControlled";
 
 interface IFiscalDocumentsProps {
   controller: [any];

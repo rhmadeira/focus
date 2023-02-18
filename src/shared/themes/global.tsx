@@ -54,9 +54,17 @@ export const globalStyles = (
 
         --gradient: "linear-gradient(135deg, #0f334c 0%, #547891 100%)";
       }
-      @keyframes loading {
+
+      .animeLeft {
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: animeLeft 0.4s forwards;
+      }
+
+      @keyframes animeLeft {
         to {
-          transform: rotate(1turn);
+          opacity: 1;
+          transform: initial;
         }
       }
     `}
