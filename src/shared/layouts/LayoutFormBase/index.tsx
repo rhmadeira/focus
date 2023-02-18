@@ -28,7 +28,7 @@ export default function LayoutFormBase({
         display="flex"
         flexDirection="column"
         padding={smDown ? 1 : mdDown ? 2 : lgDown ? 3 : 4}
-        gap={1}
+        gap={smDown ? 1 : 2}
       >
         {children}
       </Box>

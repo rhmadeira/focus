@@ -25,6 +25,8 @@ export default function SearchRegistration() {
     resolver: zodResolver(schemaSearch),
   });
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
   function handleSearch(data: SearchFormData) {
     console.log(data);
@@ -36,7 +38,7 @@ export default function SearchRegistration() {
       flex="1"
       alignItems="center"
       gap={2}
-      marginTop="10px"
+      marginTop={smDown ? "10px" : "30px"}
     >
       <LayoutFormBase handleSearch={handleSubmit(handleSearch)}>
         <SubTitle>Buscar</SubTitle>
@@ -60,7 +62,7 @@ export default function SearchRegistration() {
             variant="outlined"
           />
           <Button
-            endIcon={<Icon>search</Icon>}
+            startIcon={<Icon>search</Icon>}
             type="submit"
             variant="contained"
             size="small"

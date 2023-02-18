@@ -1,7 +1,3 @@
-import Button from "@mui/material/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as zod from "zod";
-import { useForm } from "react-hook-form";
 import {
   Box,
   Divider,
@@ -10,16 +6,22 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import SubTitle from "../../../shared/components/SubTitle";
+import Button from "@mui/material/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as zod from "zod";
+import { useForm } from "react-hook-form";
+import { schemaSearchApi, schemaSearchRef } from "../schemas/referenceSchema";
 import InputControlled from "../../../shared/components/InputControlled";
 import MuiDataPicker from "../../../shared/components/MuiDataPicker";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
-import { schemaSearchApi, schemaSearchRef } from "../schemas/referenceSchema";
+import SubTitle from "../../../shared/components/SubTitle";
 
 export type SearchRefFormData = zod.infer<typeof schemaSearchRef>;
 
 export default function SearchReference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
   const { control, handleSubmit } = useForm<SearchRefFormData>({
     resolver: zodResolver(schemaSearchRef),
   });
@@ -35,7 +37,7 @@ export default function SearchReference() {
       flex="1"
       alignItems="center"
       gap={2}
-      marginTop="10px"
+      marginTop={smDown ? "10px" : mdDown ? "40px" : lgDown ? "60px" : "80px"}
     >
       <LayoutFormBase handleSearch={handleSubmit(handleSearchRef)}>
         <SubTitle>Buscar Referência:</SubTitle>
@@ -54,7 +56,7 @@ export default function SearchReference() {
         <Box
           display="flex"
           flex={1}
-          gap={1}
+          gap={smDown ? 1 : 2}
           flexWrap={{ xs: "wrap", sm: "nowrap" }}
         >
           <InputControlled
@@ -80,7 +82,7 @@ export default function SearchReference() {
         <Box
           display="flex"
           flex={1}
-          gap={1}
+          gap={smDown ? 1 : 2}
           flexWrap={{ xs: "wrap", sm: "nowrap" }}
         >
           <InputControlled
