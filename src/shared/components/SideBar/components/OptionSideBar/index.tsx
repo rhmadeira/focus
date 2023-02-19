@@ -13,7 +13,7 @@ interface ILinkSideBarProps {
   to: string;
 }
 
-export function LinkSideBar({ icon, open, label, to }: ILinkSideBarProps) {
+export function OptionSideBar({ icon, open, label, to }: ILinkSideBarProps) {
   const resolverPath = useResolvedPath(to);
   const match = useMatch({ path: resolverPath.pathname, end: false });
   return (

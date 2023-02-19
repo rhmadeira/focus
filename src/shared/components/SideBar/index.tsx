@@ -8,14 +8,14 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import { Link, Outlet } from "react-router-dom";
-import { AppBar, Drawer, DrawerBasic, DrawerHeader } from "./styles";
+import { AppBar, Drawer, DrawerHeader } from "./styles";
 import Logo from "../../../assets/logo.svg";
-import { LinkSideBar } from "./LinkSideBar";
-import { Box, ListItemButton } from "@mui/material";
+import { Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
-import { ProfileBtn } from "./ProfileBtn";
-import { ToggleThemeSwitch } from "./ProfileBtn/ToggleThemeSwitch";
 import { useAppThemeContext } from "../../context";
+import { ProfileBtn } from "./components/ProfileBtn";
+import { ToggleThemeSwitch } from "./components/ToggleThemeSwitch";
+import { OptionSideBar } from "./components/OptionSideBar";
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -84,25 +84,30 @@ export default function MiniDrawer() {
               padding: 0,
             }}
           >
-            <LinkSideBar
+            <OptionSideBar
               icon="home"
               open={open}
               label="Página Inicial"
-              to="/home"
+              to="/"
             />
-            <LinkSideBar
+            <OptionSideBar
               icon="developer_board"
               open={open}
               label="Operações"
               to="/operacao/referencia"
             />
-            <LinkSideBar
+            <OptionSideBar
               icon="manage_accounts"
               open={open}
               label="Cadastros"
               to="/cadastro/buscar"
             />
-            <LinkSideBar icon="paid" open={open} label="Boletos" to="/boleto" />
+            <OptionSideBar
+              icon="paid"
+              open={open}
+              label="Boletos"
+              to="/boleto"
+            />
           </ListItem>
         </List>
         <Box margin={"auto auto 10px auto"}>

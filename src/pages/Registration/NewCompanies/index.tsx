@@ -4,7 +4,7 @@ import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ProgressStepper from "./ProgressStepper";
 
-export default function Companies() {
+export function NewCompanies() {
   const { handleSubmit, control } = useForm({});
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   function handleNewCompanyMobile(data: any) {
@@ -14,8 +14,8 @@ export default function Companies() {
     <Box
       display="flex"
       flexDirection="column"
-      gap={2}
-      marginTop={smDown ? "10px" : "30px"}
+      gap={1}
+      marginTop={smDown ? "5px" : "10px"}
       flex="1"
       alignItems="center"
     >

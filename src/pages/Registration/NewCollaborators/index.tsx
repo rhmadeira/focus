@@ -17,7 +17,7 @@ import SelectControlled from "../../../shared/components/SelectControlled";
 
 export type NewCollaboratorData = Zod.infer<typeof schemaNewCollaborator>;
 
-export default function Collaborators() {
+export function NewCollaborators() {
   const { handleSubmit, control } = useForm<NewCollaboratorData>({
     resolver: zodResolver(schemaNewCollaborator),
   });
@@ -29,8 +29,8 @@ export default function Collaborators() {
     <Box
       display="flex"
       flexDirection="column"
-      gap={2}
-      marginTop={smDown ? "10px" : "30px"}
+      gap={1}
+      marginTop={smDown ? "5px" : "10px"}
       flex="1"
       alignItems="center"
     >
@@ -39,7 +39,6 @@ export default function Collaborators() {
         <Divider />
         <Box
           display="flex"
-          marginTop={2}
           flex={1}
           gap={1}
           flexWrap={{ xs: "wrap", sm: "nowrap" }}

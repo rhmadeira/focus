@@ -6,13 +6,13 @@ import {
   Button,
   Divider,
   Icon,
-  Paper,
   Theme,
   useMediaQuery,
 } from "@mui/material";
 import SubTitle from "../../../shared/components/SubTitle";
 import InputControlled from "../../../shared/components/InputControlled";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
+import { Outlet } from "react-router-dom";
 
 const schemaSearch = zod.object({
   Query: zod.string().min(1).max(100),
@@ -37,16 +37,14 @@ export default function SearchRegistration() {
       flexDirection="column"
       flex="1"
       alignItems="center"
-      gap={2}
-      marginTop={smDown ? "10px" : "30px"}
+      gap={1}
+      marginTop={smDown ? "5px" : "10px"}
     >
       <LayoutFormBase handleSearch={handleSubmit(handleSearch)}>
         <SubTitle>Buscar</SubTitle>
         <Divider />
-        {/* <Box component={Paper} padding={2} maxWidth="600px"> */}
         <Box
           display="flex"
-          marginTop={1}
           flexWrap={smDown ? "wrap" : "nowrap"}
           gap={1}
           width="100%"
@@ -70,7 +68,10 @@ export default function SearchRegistration() {
             Buscar
           </Button>
         </Box>
-        {/* </Box> */}
+        <Box>
+          {/* Aqui vai a busca */}
+          <Outlet />
+        </Box>
       </LayoutFormBase>
     </Box>
   );
