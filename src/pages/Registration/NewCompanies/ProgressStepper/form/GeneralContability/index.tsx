@@ -1,5 +1,5 @@
 import { Box, Theme, useMediaQuery } from "@mui/material";
-import InputControlled from "../../../../../../shared/components/InputControlled";
+import InputControlled from "../../../../../../shared/components/form/InputControlled";
 import SubTitle from "../../../../../../shared/components/SubTitle";
 
 interface GeneralContabilityProps {

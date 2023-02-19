@@ -5,11 +5,9 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Divider, Switch, Theme, useMediaQuery } from "@mui/material";
+import { Divider, Theme, useMediaQuery } from "@mui/material";
 import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
 import { useForm } from "react-hook-form";
-import InputControlled from "../../../../shared/components/InputControlled";
-import SelectControlled from "../../../../shared/components/SelectControlled";
 import SubTitle from "../../../../shared/components/SubTitle";
 import FiscalDocuments from "./form/FiscalDocuments";
 import { Identification } from "./form/Identification";
@@ -26,12 +24,6 @@ const steps = [
   "Tokens",
   "Documentos Fiscais",
 ];
-// {
-//   <FiscalDocuments
-//                     controller={[{ name: "nfs", control, defaultValue: "" }]}
-//                     label="NFs"
-//                   />
-// }
 
 export default function StepperForm() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -65,7 +57,7 @@ export default function StepperForm() {
       <LayoutFormBase handleSearch={handleSubmit(handleSaveNewCompany)}>
         <SubTitle>Nova Empresa</SubTitle>
         <Divider />
-        <Box sx={{ width: "100%" }}>
+        <Box width="100%" height="100%">
           <Stepper activeStep={activeStep}>
             {steps.map((label, index) => {
               const stepProps: { completed?: boolean } = {};
@@ -78,7 +70,6 @@ export default function StepperForm() {
           </Stepper>
           <>
             <Box marginTop={2}>
-              {/* Identificação */}
               {activeStep === 0 ? (
                 <Identification control={control} chekedPerson={chekedPerson} />
               ) : activeStep === 1 ? (
@@ -100,8 +91,8 @@ export default function StepperForm() {
                 </Box>
               ) : (
                 <Box>
-                  <Typography variant="h4">
-                    Por favor verifique os dados e clique em salvar.
+                  <Typography variant="h6">
+                    Antes de salvar, verifique se os dados estão corretos.
                   </Typography>
                 </Box>
               )}

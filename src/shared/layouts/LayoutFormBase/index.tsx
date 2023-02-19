@@ -21,7 +21,7 @@ export default function LayoutFormBase({
       component="form"
       onSubmit={handleSearch}
       width={smDown ? "100%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
-      className="animeLeft"
+      // className="animeLeft"
     >
       <Box
         component={Paper}
@@ -29,6 +29,7 @@ export default function LayoutFormBase({
         flexDirection="column"
         padding={smDown ? 1 : mdDown ? 2 : lgDown ? 3 : 4}
         gap={smDown ? 1 : 2}
+        height="100%"
       >
         {children}
       </Box>

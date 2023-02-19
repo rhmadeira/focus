@@ -33,12 +33,12 @@ export default function MiniDrawer() {
 
   return (
     <Box
-      bgcolor={theme.palette.background.default}
       sx={{
         display: "flex",
         width: "100vw",
-        height: "100vh",
+        height: "100%",
       }}
+      bgcolor={theme.palette.background.default}
     >
       <AppBar open={open}>
         <Toolbar>
@@ -88,7 +88,7 @@ export default function MiniDrawer() {
               icon="home"
               open={open}
               label="Página Inicial"
-              to="/"
+              to="/home"
             />
             <OptionSideBar
               icon="developer_board"

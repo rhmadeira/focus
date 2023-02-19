@@ -15,7 +15,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LayoutSideBar />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="operacao" element={<Operations />}>
           <Route path="referencia" element={<SearchReference />} />
         </Route>

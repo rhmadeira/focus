@@ -1,28 +1,24 @@
-import {
-  Box,
-  Divider,
-  Icon,
-  Theme,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Divider, Icon, Theme, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as zod from "zod";
 import { useForm } from "react-hook-form";
-import { schemaSearchApi, schemaSearchRef } from "../schemas/referenceSchema";
-import InputControlled from "../../../shared/components/InputControlled";
-import MuiDataPicker from "../../../shared/components/MuiDataPicker";
+import {
+  schemaSearchApi,
+  schemaSearchRef,
+  SearchRefFormData,
+} from "../schemas/referenceSchema";
+import InputControlled from "../../../shared/components/form/InputControlled";
+import MuiDataPicker from "../../../shared/components/form/MuiDataPicker";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../../shared/components/SubTitle";
 
-export type SearchRefFormData = zod.infer<typeof schemaSearchRef>;
-
 export default function SearchReference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
-  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
-  const { control, handleSubmit } = useForm<SearchRefFormData>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SearchRefFormData>({
     resolver: zodResolver(schemaSearchRef),
   });
 
@@ -42,17 +38,23 @@ export default function SearchReference() {
       <LayoutFormBase handleSearch={handleSubmit(handleSearchRef)}>
         <SubTitle>Buscar Referência:</SubTitle>
         <Divider />
-        <Box
+        {/* <Box
           display="flex"
           marginTop={2}
           alignItems="center"
           gap={2}
           flexWrap={{ xs: "wrap", sm: "nowrap" }}
         >
-          <MuiDataPicker textPlaceholder="Data inicial" />
+          <MuiDataPicker
+            controller={{ name: "dateStart", control, defaultValue: "" }}
+            textPlaceholder="Data inicial"
+          />
           {smDown ? null : <Typography component="span">Até</Typography>}
-          <MuiDataPicker textPlaceholder="Data final" />
-        </Box>
+          <MuiDataPicker
+            controller={{ name: "dateEnd", control, defaultValue: "" }}
+            textPlaceholder="Data final"
+          />
+        </Box> */}
         <Box
           display="flex"
           flex={1}

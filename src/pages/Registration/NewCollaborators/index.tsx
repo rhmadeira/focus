@@ -12,8 +12,8 @@ import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
 import { schemaNewCollaborator } from "../schemas/colaboratorsSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SubTitle from "../../../shared/components/SubTitle";
-import InputControlled from "../../../shared/components/InputControlled";
-import SelectControlled from "../../../shared/components/SelectControlled";
+import InputControlled from "../../../shared/components/form/InputControlled";
+import SelectControlled from "../../../shared/components/form/SelectControlled";
 
 export type NewCollaboratorData = Zod.infer<typeof schemaNewCollaborator>;
 

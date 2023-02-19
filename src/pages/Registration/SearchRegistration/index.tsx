@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import SubTitle from "../../../shared/components/SubTitle";
-import InputControlled from "../../../shared/components/InputControlled";
+import InputControlled from "../../../shared/components/form/InputControlled";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
 import { Outlet } from "react-router-dom";
 

@@ -11,7 +11,7 @@ import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { AuthContext } from "../../shared/context/AuthContext";
-import InputControlled from "../../shared/components/InputControlled";
+import InputControlled from "../../shared/components/form/InputControlled";
 import { Button } from "@mui/material";
 
 const loginSchema = zod.object({

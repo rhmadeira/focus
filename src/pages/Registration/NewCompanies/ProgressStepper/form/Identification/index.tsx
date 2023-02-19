@@ -1,6 +1,6 @@
 import { Box, Theme, useMediaQuery } from "@mui/material";
-import InputControlled from "../../../../../../shared/components/InputControlled";
-import SelectControlled from "../../../../../../shared/components/SelectControlled";
+import InputControlled from "../../../../../../shared/components/form/InputControlled";
+import SelectControlled from "../../../../../../shared/components/form/SelectControlled";
 import SubTitle from "../../../../../../shared/components/SubTitle";
 
 interface IIdentificationProps {
@@ -14,12 +14,12 @@ export function Identification({
 }: IIdentificationProps) {
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
   return (
-    <Box display="flex" flexDirection="column" gap={1}>
+    <Box display="flex" flexDirection="column" gap={2}>
       {mdDown ? <SubTitle>Identificação:</SubTitle> : null}
       <Box
         display="flex"
         flex={1}
-        gap={1}
+        gap={2}
         flexWrap={{ xs: "wrap", sm: "nowrap" }}
       >
         {" "}
@@ -62,7 +62,7 @@ export function Identification({
       <Box
         display="flex"
         flex={1}
-        gap={1}
+        gap={2}
         flexWrap={{ xs: "wrap", sm: "nowrap" }}
       >
         <InputControlled
