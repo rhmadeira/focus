@@ -1,3 +1,19 @@
 {
-  "operacoes": []
+  "operacoes": [],
+  "colaborators": [
+    {
+      "name": "teste",
+      "email": "teste01@teste01.com",
+      "password": "123456",
+      "permission": 1,
+      "id": 1
+    },
+    {
+      "name": "Rafael",
+      "email": "rafael@g.com",
+      "password": "123456",
+      "permission": 1,
+      "id": 2
+    }
+  ]
 }

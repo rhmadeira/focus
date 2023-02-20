@@ -13,6 +13,7 @@ export function Identification({
   chekedPerson,
 }: IIdentificationProps) {
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       {mdDown ? <SubTitle>Identificação:</SubTitle> : null}
@@ -32,23 +33,22 @@ export function Identification({
             { index: 2, label: "Jurídica" },
           ]}
         />
-        {chekedPerson === 1 ? (
-          <InputControlled
-            controller={{
-              name: "cpf",
-              control,
-              defaultValue: "",
-            }}
-            size="small"
-            label="CPF"
-          />
-        ) : (
-          <InputControlled
-            controller={{ name: "cnpj", control, defaultValue: "" }}
-            size="small"
-            label="CNPJ"
-          />
-        )}
+        <InputControlled
+          controller={{
+            name: "cpf",
+            control,
+            defaultValue: "",
+          }}
+          size="small"
+          label="CPF"
+          sx={{ display: chekedPerson === 1 ? "block" : "none" }}
+        />
+        <InputControlled
+          controller={{ name: "cnpj", control, defaultValue: "" }}
+          size="small"
+          label="CNPJ"
+          sx={{ display: chekedPerson === 2 ? "block" : "none" }}
+        />
         <InputControlled
           controller={{
             name: "nomeFantasia",
@@ -57,6 +57,7 @@ export function Identification({
           }}
           size="small"
           label="Nome Fantasia"
+          sx={{ display: chekedPerson === 2 ? "block" : "none" }}
         />
       </Box>
       <Box

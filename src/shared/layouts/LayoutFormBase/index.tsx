@@ -27,7 +27,7 @@ export default function LayoutFormBase({
         component={Paper}
         display="flex"
         flexDirection="column"
-        padding={smDown ? 1 : mdDown ? 2 : lgDown ? 3 : 4}
+        padding={smDown ? 1 : mdDown ? 1 : lgDown ? 2 : 3}
         gap={smDown ? 1 : 2}
         height="100%"
       >

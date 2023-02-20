@@ -15,6 +15,32 @@ import { ContactAddress } from "./form/ContactAddress";
 import { Responsible } from "./form/Responsible";
 import { GeneralContability } from "./form/GeneralContability";
 import { UserTokens } from "./form/UserTokens";
+import * as Zod from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schemaNewCompany = Zod.object({
+  pessoa: Zod.number(),
+  nome: Zod.string().optional(),
+  nomeFantasia: Zod.string().optional(),
+  cnpj: Zod.string().optional(),
+  cpf: Zod.string().optional(),
+  inscricaoEstadual: Zod.string().optional(),
+  inscricaoMunicipal: Zod.string().optional(),
+  regime: Zod.number().optional(),
+  email: Zod.string().optional(),
+  telefone: Zod.string().optional(),
+  cep: Zod.string().optional(),
+  logradouro: Zod.string().optional(),
+  numero: Zod.string().optional(),
+  complemento: Zod.string().optional(),
+  bairro: Zod.string().optional(),
+  cidade: Zod.string().optional(),
+  estado: Zod.string().optional(),
+  nomeResponsavel: Zod.string().optional(),
+  contabilidade: Zod.string().optional(),
+  tokenHom: Zod.string().optional(),
+  tokenProd: Zod.string().optional(),
+});
 
 const steps = [
   "Identificação",

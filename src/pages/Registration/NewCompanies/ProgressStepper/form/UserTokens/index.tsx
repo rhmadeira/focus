@@ -13,7 +13,7 @@ export function UserTokens({ control }: UserTokensProps) {
       {mdDown ? <SubTitle>Tokens:</SubTitle> : null}
       <InputControlled
         controller={{
-          name: "tokenHomologacao",
+          name: "tokenHom",
           control,
           defaultValue: "",
         }}
@@ -22,7 +22,7 @@ export function UserTokens({ control }: UserTokensProps) {
       />
       <InputControlled
         controller={{
-          name: "tokenProducao",
+          name: "tokenProd",
           control,
           defaultValue: "",
         }}
