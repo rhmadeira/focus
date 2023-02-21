@@ -85,28 +85,28 @@ export default function MiniDrawer() {
             }}
           >
             <OptionSideBar
-              icon="home"
-              open={open}
-              label="Página Inicial"
-              to="/home"
-            />
-            <OptionSideBar
               icon="developer_board"
               open={open}
-              label="Operações"
-              to="/operacao/referencia"
+              label="Referência"
+              to="/referencia"
             />
             <OptionSideBar
-              icon="manage_accounts"
+              icon="groups"
               open={open}
-              label="Cadastros"
-              to="/cadastro/buscar"
+              label="Colaborador"
+              to="/colaborador"
+            />
+            <OptionSideBar
+              icon="domain"
+              open={open}
+              label="Empresa"
+              to="/empresa"
             />
             <OptionSideBar
               icon="paid"
               open={open}
-              label="Boletos"
-              to="/boleto"
+              label="Titulos"
+              to="/titulos"
             />
           </ListItem>
         </List>

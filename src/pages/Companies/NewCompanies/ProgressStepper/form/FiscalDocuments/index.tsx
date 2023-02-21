@@ -1,6 +1,5 @@
 import { Box, Switch } from "@mui/material";
 import { useState } from "react";
-import InputControlled from "../../../../../../shared/components/form/InputControlled";
 
 interface IFiscalDocumentsProps {
   controller: [any];

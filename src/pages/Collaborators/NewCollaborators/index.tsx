@@ -9,15 +9,16 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import LayoutFormBase from "../../../shared/layouts/LayoutFormBase";
-import {
-  NewCollaboratorData,
-  schemaNewCollaborator,
-} from "../schemas/colaboratorsSchemas";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import SubTitle from "../../../shared/components/SubTitle";
 import InputControlled from "../../../shared/components/form/InputControlled";
 import SelectControlled from "../../../shared/components/form/SelectControlled";
 import { setColaborator } from "../../../shared/services/api/register";
+import {
+  NewCollaboratorData,
+  schemaNewCollaborator,
+} from "../schemas/colaboratorsSchemas";
 
 export function NewCollaborators() {
   const {

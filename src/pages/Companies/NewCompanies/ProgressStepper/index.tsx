@@ -6,9 +6,7 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Divider, Theme, useMediaQuery } from "@mui/material";
-import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
 import { useForm } from "react-hook-form";
-import SubTitle from "../../../../shared/components/SubTitle";
 import FiscalDocuments from "./form/FiscalDocuments";
 import { Identification } from "./form/Identification";
 import { ContactAddress } from "./form/ContactAddress";
@@ -17,6 +15,8 @@ import { GeneralContability } from "./form/GeneralContability";
 import { UserTokens } from "./form/UserTokens";
 import * as Zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import LayoutFormBase from "../../../../../shared/layouts/LayoutFormBase";
+import SubTitle from "../../../../../shared/components/SubTitle";
 
 const schemaNewCompany = Zod.object({
   pessoa: Zod.number(),
