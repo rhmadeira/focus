@@ -13,34 +13,9 @@ import { ContactAddress } from "./form/ContactAddress";
 import { Responsible } from "./form/Responsible";
 import { GeneralContability } from "./form/GeneralContability";
 import { UserTokens } from "./form/UserTokens";
-import * as Zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import LayoutFormBase from "../../../../../shared/layouts/LayoutFormBase";
-import SubTitle from "../../../../../shared/components/SubTitle";
-
-const schemaNewCompany = Zod.object({
-  pessoa: Zod.number(),
-  nome: Zod.string().optional(),
-  nomeFantasia: Zod.string().optional(),
-  cnpj: Zod.string().optional(),
-  cpf: Zod.string().optional(),
-  inscricaoEstadual: Zod.string().optional(),
-  inscricaoMunicipal: Zod.string().optional(),
-  regime: Zod.number().optional(),
-  email: Zod.string().optional(),
-  telefone: Zod.string().optional(),
-  cep: Zod.string().optional(),
-  logradouro: Zod.string().optional(),
-  numero: Zod.string().optional(),
-  complemento: Zod.string().optional(),
-  bairro: Zod.string().optional(),
-  cidade: Zod.string().optional(),
-  estado: Zod.string().optional(),
-  nomeResponsavel: Zod.string().optional(),
-  contabilidade: Zod.string().optional(),
-  tokenHom: Zod.string().optional(),
-  tokenProd: Zod.string().optional(),
-});
+import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
+import SubTitle from "../../../../shared/components/SubTitle";
+import { setCompany } from "../../../../shared/services/api/company";
 
 const steps = [
   "Identificação",
@@ -56,7 +31,7 @@ export default function StepperForm() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-  const { handleSubmit, control, watch } = useForm();
+  const { handleSubmit, control, watch, reset } = useForm();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -67,8 +42,15 @@ export default function StepperForm() {
     setSkipped(newSkipped);
   };
 
-  function handleSaveNewCompany(data: any) {
-    console.log(data);
+  async function handleSaveNewCompany(input: any) {
+    try {
+      const { data, status } = await setCompany(input);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      handleReset();
+      reset();
+    }
   }
 
   const handleReset = () => {
@@ -76,7 +58,6 @@ export default function StepperForm() {
   };
 
   const chekedPerson = watch("pessoa");
-  console.log(chekedPerson);
 
   return (
     <>

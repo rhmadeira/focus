@@ -24,8 +24,7 @@ export default function Reference() {
   });
 
   function handleSearchRef(data: SearchRefFormData) {
-    const apiData = schemaSearchApi.parse(data);
-    console.log(apiData);
+    return;
   }
   return (
     <LayoutBasePage title="Referência">

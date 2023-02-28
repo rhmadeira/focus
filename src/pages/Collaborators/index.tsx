@@ -48,6 +48,8 @@ export default function Collaborators() {
     resolver: zodResolver(schemaSearch),
   });
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
   async function handleSearch(input: SearchFormData) {
     try {
@@ -76,7 +78,18 @@ export default function Collaborators() {
         marginTop={smDown ? "5px" : "10px"}
       >
         <LayoutFormBase handleSearch={handleSubmit(handleSearch)}>
-          <SubTitle>Buscar por Colaborador:</SubTitle>
+          <Box display="flex" justifyContent="space-between">
+            <SubTitle>Buscar por Colaborador:</SubTitle>
+            <Button
+              type="button"
+              startIcon={<Icon>add</Icon>}
+              variant={smDown ? "text" : "outlined"}
+              onClick={() => navigate("/colaborador/novo")}
+            >
+              Colaborador
+            </Button>
+          </Box>
+
           <Divider />
           <Box
             display="flex"
@@ -104,57 +117,60 @@ export default function Collaborators() {
             </Button>
           </Box>
         </LayoutFormBase>
-        <TableContainer
-          component={Paper}
-          variant="outlined"
-          sx={{ m: 1, width: "100%" }}
+        <Divider />
+
+        <Box
+          marginTop="20px"
+          width={smDown ? "100%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
         >
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Nome</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell width={100}>Ações</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows?.map((row) => {
-                return (
-                  <TableRow key={row.id}>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>
-                      <IconButton
-                        size="small"
-                        onClick={() => handleDelete(row.id)}
-                      >
-                        <Icon fontSize="small">delete</Icon>
-                      </IconButton>
-                      <IconButton
-                        size="small"
-                        onClick={() =>
-                          navigate(`/colaborador/editarcolaborador/${row.id}`)
-                        }
-                      >
-                        <Icon fontSize="small">edit</Icon>
-                      </IconButton>
+          <TableContainer component={Paper} variant="outlined">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Nome</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell width={100}>Ações</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows?.map((row) => {
+                  return (
+                    <TableRow key={row.id}>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.email}</TableCell>
+                      <TableCell>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleDelete(row.id)}
+                        >
+                          <Icon fontSize="small">delete</Icon>
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() =>
+                            navigate(`/colaborador/editarcolaborador/${row.id}`)
+                          }
+                        >
+                          <Icon fontSize="small">edit</Icon>
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+
+              <TableFooter>
+                {isLoading && (
+                  <TableRow>
+                    <TableCell colSpan={3}>
+                      <LinearProgress variant="indeterminate" />
                     </TableCell>
                   </TableRow>
-                );
-              })}
-            </TableBody>
-
-            <TableFooter>
-              {isLoading && (
-                <TableRow>
-                  <TableCell colSpan={3}>
-                    <LinearProgress variant="indeterminate" />
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableFooter>
-          </Table>
-        </TableContainer>
+                )}
+              </TableFooter>
+            </Table>
+          </TableContainer>
+        </Box>
       </Box>
     </LayoutBasePage>
   );

@@ -1,9 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
-import { LoginData } from "../../pages/Login";
+import { useNavigate } from "react-router-dom";
+import { api } from "../services/api/axios";
 
 interface AuthContextData {
-  isLoading: boolean;
-  token: boolean;
   handleAuthLogin: (email: string, password: string) => Promise<void>;
 }
 
@@ -14,23 +13,13 @@ export function AuthProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [isLoading, setIsLoading] = useState(false);
-  const [token, setToken] = useState(false);
+  const [data, setData] = useState(null);
+  const [login, setLogin] = useState(null);
 
-  async function handleAuthLogin(email: string, password: string) {
-    try {
-      setToken(true);
-    } catch (error) {
-      console.log(error);
-    } finally {
-    }
-  }
-
+  async function handleAuthLogin(email: string, password: string) {}
   return (
     <AuthContext.Provider
       value={{
-        isLoading,
-        token,
         handleAuthLogin,
       }}
     >

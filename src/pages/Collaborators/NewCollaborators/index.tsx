@@ -14,11 +14,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import SubTitle from "../../../shared/components/SubTitle";
 import InputControlled from "../../../shared/components/form/InputControlled";
 import SelectControlled from "../../../shared/components/form/SelectControlled";
-import { setColaborator } from "../../../shared/services/api/register";
+
 import {
   NewCollaboratorData,
   schemaNewCollaborator,
 } from "../schemas/colaboratorsSchemas";
+import { setCollaborator } from "../../../shared/services/api/collaborators";
 
 export function NewCollaborators() {
   const {
@@ -32,7 +33,7 @@ export function NewCollaborators() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const handleNewCollaborators = async (data: NewCollaboratorData) => {
     try {
-      const response = await setColaborator(data);
+      const response = await setCollaborator(data);
       console.log(response);
     } catch (error) {
       console.log(error);

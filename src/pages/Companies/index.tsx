@@ -26,30 +26,36 @@ import { useState } from "react";
 import * as zod from "zod";
 
 import SubTitle from "../../shared/components/SubTitle";
+import { getCompanies } from "../../shared/services/api/company";
+import { NewCompanyDataResponse } from "./schemas";
 
 const schemaSearch = zod.object({
-  Query: zod.string().min(1).max(100),
+  nome: zod.string(),
 });
 
 export type SearchFormData = zod.infer<typeof schemaSearch>;
 
 export default function Companies() {
   const [isLoading, setIsLoading] = useState(false);
-  const [rows, setRows] = useState([
-    {
-      id: 1,
-      name: "teste",
-      email: "",
-    },
-  ]);
+  const [rows, setRows] = useState<NewCompanyDataResponse[]>([]);
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<SearchFormData>({
     resolver: zodResolver(schemaSearch),
   });
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
   async function handleSearch(input: SearchFormData) {
-    console.log(input);
+    try {
+      setIsLoading(true);
+      const { data, status } = await getCompanies(input.nome);
+      setRows(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
   function handleDelete(id: number) {
     console.log(id);
@@ -65,7 +71,17 @@ export default function Companies() {
         marginTop={smDown ? "5px" : "10px"}
       >
         <LayoutFormBase handleSearch={handleSubmit(handleSearch)}>
-          <SubTitle>Buscar por Empresa:</SubTitle>
+          <Box display="flex" justifyContent="space-between">
+            <SubTitle>Buscar por Empresa:</SubTitle>
+            <Button
+              type="button"
+              startIcon={<Icon>add</Icon>}
+              variant={smDown ? "text" : "outlined"}
+              onClick={() => navigate("/empresa/nova")}
+            >
+              Empresa
+            </Button>
+          </Box>
           <Divider />
           <Box
             display="flex"
@@ -76,7 +92,7 @@ export default function Companies() {
             <InputControlled
               controller={{
                 control,
-                name: "Query",
+                name: "nome",
                 defaultValue: "",
               }}
               size="small"
@@ -93,57 +109,59 @@ export default function Companies() {
             </Button>
           </Box>
         </LayoutFormBase>
-        <TableContainer
-          component={Paper}
-          variant="outlined"
-          sx={{ m: 1, width: "100%" }}
+        <Divider />
+        <Box
+          marginTop="20px"
+          width={smDown ? "100%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
         >
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Nome</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell width={100}>Ações</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows?.map((row) => {
-                return (
-                  <TableRow key={row.id}>
-                    <TableCell>aguardando schema</TableCell>
-                    <TableCell>aguardando schema</TableCell>
-                    <TableCell>
-                      <IconButton
-                        size="small"
-                        onClick={() => handleDelete(row.id)}
-                      >
-                        <Icon fontSize="small">delete</Icon>
-                      </IconButton>
-                      <IconButton
-                        size="small"
-                        onClick={() =>
-                          navigate(`/empresa/editarempresa/${row.id}`)
-                        }
-                      >
-                        <Icon fontSize="small">edit</Icon>
-                      </IconButton>
+          <TableContainer component={Paper} variant="outlined">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Nome</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell width={100}>Ações</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows?.map((row) => {
+                  return (
+                    <TableRow key={row.id}>
+                      <TableCell>{row.nome}</TableCell>
+                      <TableCell>{row.email}</TableCell>
+                      <TableCell>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleDelete(row.id)}
+                        >
+                          <Icon fontSize="small">delete</Icon>
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() =>
+                            navigate(`/empresa/editarempresa/${row.id}`)
+                          }
+                        >
+                          <Icon fontSize="small">edit</Icon>
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+
+              <TableFooter>
+                {isLoading && (
+                  <TableRow>
+                    <TableCell colSpan={3}>
+                      <LinearProgress variant="indeterminate" />
                     </TableCell>
                   </TableRow>
-                );
-              })}
-            </TableBody>
-
-            <TableFooter>
-              {isLoading && (
-                <TableRow>
-                  <TableCell colSpan={3}>
-                    <LinearProgress variant="indeterminate" />
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableFooter>
-          </Table>
-        </TableContainer>
+                )}
+              </TableFooter>
+            </Table>
+          </TableContainer>
+        </Box>
       </Box>
     </LayoutBasePage>
   );

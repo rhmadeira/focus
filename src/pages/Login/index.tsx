@@ -27,9 +27,7 @@ export default function Login() {
   });
   const { handleAuthLogin } = useContext(AuthContext);
 
-  function handleLogin(data: LoginData) {
-    handleAuthLogin(data);
-  }
+  function handleLogin(data: LoginData) {}
 
   return (
     <ContainerAll>
