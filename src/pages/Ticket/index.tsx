@@ -11,12 +11,15 @@ import {
   TableFooter,
   TableHead,
   TableRow,
+  Theme,
+  useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 
 export default function Ticket() {
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const [isLoading, setIsLoading] = useState(false);
   const [rows, setRows] = useState([
     {
@@ -34,7 +37,7 @@ export default function Ticket() {
   }
   return (
     <LayoutBasePage title="Boletos">
-      <Box flex={1} overflow="auto">
+      <Box flex={1} overflow="auto" marginTop={smDown ? "5px" : "10px"}>
         <TableContainer component={Paper} variant="outlined">
           <Table>
             <TableHead>

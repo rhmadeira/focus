@@ -119,10 +119,7 @@ export default function Collaborators() {
         </LayoutFormBase>
         <Divider />
 
-        <Box
-          marginTop="20px"
-          width={smDown ? "100%" : mdDown ? "98%" : lgDown ? "98%" : "89%"}
-        >
+        <Box marginTop="20px" width="100%">
           <TableContainer component={Paper} variant="outlined">
             <Table>
               <TableHead>

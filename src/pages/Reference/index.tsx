@@ -34,7 +34,7 @@ export default function Reference() {
         flex="1"
         alignItems="center"
         gap={2}
-        marginTop={smDown ? "10px" : "20px"}
+        marginTop={smDown ? "5px" : "10px"}
       >
         <LayoutFormBase handleSearch={handleSubmit(handleSearchRef)}>
           <SubTitle>Buscar Referência:</SubTitle>

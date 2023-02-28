@@ -50,6 +50,7 @@ export function NewCollaborators() {
       marginTop={smDown ? "2px" : "5px"}
       flex="1"
       alignItems="center"
+      padding="20px"
     >
       <LayoutFormBase handleSearch={handleSubmit(handleNewCollaborators)}>
         <SubTitle>Novo Colaborador</SubTitle>
