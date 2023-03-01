@@ -1,4 +1,4 @@
-export interface Referencia {
+export interface IReference {
   status: string;
   status_sefaz: string;
   mensagem_sefaz: string;
@@ -27,8 +27,4 @@ export interface Referencia {
   nf_post_error_params: string;
   nf_post_error_query_string: string;
   caminho_xml_cancelamento: string;
-}
-
-export interface RootObject {
-  referencias: Referencia[];
 }
