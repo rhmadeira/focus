@@ -8,13 +8,14 @@ import LayoutFormBase from "../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../shared/components/SubTitle";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import TableReference from "./components/TableReference";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getReference } from "../../shared/services/reference";
 import { IReference } from "../../shared/services/schemas/referenceSchema";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const [reference, setReference] = useState<IReference[]>([]);
   const [searchParams, setsearchParams] = useSearchParams();
   const {
     control,
@@ -26,12 +27,12 @@ export default function Reference() {
 
   async function handleSearchRef(reference: SearchRefFormData) {
     const { value } = await getReference(reference);
-    console.log(value);
+    setReference(value);
   }
 
-  const busca = useMemo(() => {
-    return searchParams.get("busca") || "";
-  }, [searchParams]);
+  // const busca = useMemo(() => {
+  //   return searchParams.get("busca") || "";
+  // }, [searchParams]);
 
   // const page = useMemo(() => {
   //   return Number(searchParams.get("pagina") || "1");
@@ -109,7 +110,7 @@ export default function Reference() {
           </Box>
         </LayoutFormBase>
         <Box width="100%">
-          <TableReference />
+          <TableReference referenceData={reference} />
         </Box>
       </Box>
     </LayoutBasePage>
