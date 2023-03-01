@@ -2,19 +2,20 @@ import { Box, Divider, Icon, Theme, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  schemaSearchApi,
-  schemaSearchRef,
-  SearchRefFormData,
-} from "./schemas/referenceSchema";
+import { schemaSearchRef, SearchRefFormData } from "./schemas/referenceSchema";
 import InputControlled from "../../shared/components/form/InputControlled";
-import MuiDataPicker from "../../shared/components/form/MuiDataPicker";
 import LayoutFormBase from "../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../shared/components/SubTitle";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
+import TableReference from "./components/TableReference";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import { getReference } from "../../shared/services/reference";
+import { IReference } from "../../shared/services/schemas/referenceSchema";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const [searchParams, setsearchParams] = useSearchParams();
   const {
     control,
     handleSubmit,
@@ -23,9 +24,19 @@ export default function Reference() {
     resolver: zodResolver(schemaSearchRef),
   });
 
-  function handleSearchRef(data: SearchRefFormData) {
-    return;
+  async function handleSearchRef(reference: SearchRefFormData) {
+    const { value } = await getReference(reference);
+    console.log(value);
   }
+
+  const busca = useMemo(() => {
+    return searchParams.get("busca") || "";
+  }, [searchParams]);
+
+  // const page = useMemo(() => {
+  //   return Number(searchParams.get("pagina") || "1");
+  // }, [searchParams]);
+
   return (
     <LayoutBasePage title="Referência">
       <Box
@@ -40,21 +51,6 @@ export default function Reference() {
           <SubTitle>Buscar Referência:</SubTitle>
           <Divider />
           {/* <Box
-          display="flex"
-          marginTop={2}
-          alignItems="center"
-          gap={2}
-          flexWrap={{ xs: "wrap", sm: "nowrap" }}
-        >
-          <MuiDataPicker
-            controller={{ name: "dateStart", control, defaultValue: "" }}
-            textPlaceholder="Data inicial"
-          />
-          {smDown ? null : <Typography component="span">Até</Typography>}
-          <MuiDataPicker
-            controller={{ name: "dateEnd", control, defaultValue: "" }}
-            textPlaceholder="Data final"
-          />
         </Box> */}
           <Box
             display="flex"
@@ -81,13 +77,7 @@ export default function Reference() {
               label="Referência"
               size="small"
             />
-          </Box>
-          <Box
-            display="flex"
-            flex={1}
-            gap={smDown ? 1 : 2}
-            flexWrap={{ xs: "wrap", sm: "nowrap" }}
-          >
+
             <InputControlled
               controller={{
                 control,
@@ -106,18 +96,21 @@ export default function Reference() {
               label="N.RPS"
               size="small"
             />
-          </Box>
-          <Box>
-            <Button
-              startIcon={<Icon>search</Icon>}
-              type="submit"
-              variant="contained"
-              size="small"
-            >
-              Buscar
-            </Button>
+            <Box>
+              <Button
+                startIcon={<Icon>search</Icon>}
+                type="submit"
+                variant="contained"
+                size="medium"
+              >
+                Buscar
+              </Button>
+            </Box>
           </Box>
         </LayoutFormBase>
+        <Box width="100%">
+          <TableReference />
+        </Box>
       </Box>
     </LayoutBasePage>
   );

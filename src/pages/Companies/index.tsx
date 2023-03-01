@@ -28,6 +28,7 @@ import * as zod from "zod";
 import SubTitle from "../../shared/components/SubTitle";
 import { getCompanies } from "../../shared/services/api/company";
 import { NewCompanyDataResponse } from "./schemas";
+import TableCompanies from "./components/TableCopanies";
 
 const schemaSearch = zod.object({
   nome: zod.string(),
@@ -109,55 +110,8 @@ export default function Companies() {
             </Button>
           </Box>
         </LayoutFormBase>
-        <Divider />
-        <Box marginTop="20px" width="100%">
-          <TableContainer component={Paper} variant="outlined">
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Nome</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell width={100}>Ações</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows?.map((row) => {
-                  return (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.nome}</TableCell>
-                      <TableCell>{row.email}</TableCell>
-                      <TableCell>
-                        <IconButton
-                          size="small"
-                          onClick={() => handleDelete(row.id)}
-                        >
-                          <Icon fontSize="small">delete</Icon>
-                        </IconButton>
-                        <IconButton
-                          size="small"
-                          onClick={() =>
-                            navigate(`/empresa/editarempresa/${row.id}`)
-                          }
-                        >
-                          <Icon fontSize="small">edit</Icon>
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-
-              <TableFooter>
-                {isLoading && (
-                  <TableRow>
-                    <TableCell colSpan={3}>
-                      <LinearProgress variant="indeterminate" />
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableFooter>
-            </Table>
-          </TableContainer>
+        <Box width="100%">
+          <TableCompanies />
         </Box>
       </Box>
     </LayoutBasePage>

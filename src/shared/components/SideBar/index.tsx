@@ -102,12 +102,12 @@ export default function MiniDrawer() {
               label="Empresa"
               to="/empresa"
             />
-            <OptionSideBar
+            {/* <OptionSideBar
               icon="paid"
               open={open}
               label="Titulos"
               to="/titulos"
-            />
+            /> */}
           </ListItem>
         </List>
         <Box margin={"auto auto 10px auto"}>

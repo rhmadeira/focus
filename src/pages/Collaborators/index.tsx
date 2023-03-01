@@ -27,6 +27,7 @@ import { getCollaborators } from "../../shared/services/api/collaborators";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import LayoutFormBase from "../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../shared/components/SubTitle";
+import TableCollaborators from "./components/TableCollaborators";
 
 const schemaSearch = zod.object({
   nome: zod.string(),
@@ -117,56 +118,8 @@ export default function Collaborators() {
             </Button>
           </Box>
         </LayoutFormBase>
-        <Divider />
-
-        <Box marginTop="20px" width="100%">
-          <TableContainer component={Paper} variant="outlined">
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Nome</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell width={100}>Ações</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows?.map((row) => {
-                  return (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.name}</TableCell>
-                      <TableCell>{row.email}</TableCell>
-                      <TableCell>
-                        <IconButton
-                          size="small"
-                          onClick={() => handleDelete(row.id)}
-                        >
-                          <Icon fontSize="small">delete</Icon>
-                        </IconButton>
-                        <IconButton
-                          size="small"
-                          onClick={() =>
-                            navigate(`/colaborador/editarcolaborador/${row.id}`)
-                          }
-                        >
-                          <Icon fontSize="small">edit</Icon>
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-
-              <TableFooter>
-                {isLoading && (
-                  <TableRow>
-                    <TableCell colSpan={3}>
-                      <LinearProgress variant="indeterminate" />
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableFooter>
-            </Table>
-          </TableContainer>
+        <Box width="100%">
+          <TableCollaborators />
         </Box>
       </Box>
     </LayoutBasePage>
