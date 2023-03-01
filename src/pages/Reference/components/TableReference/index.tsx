@@ -15,6 +15,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { IReference } from "../../../../shared/services/schemas/referenceSchema";
 
 const rows = [
   {
@@ -138,8 +139,11 @@ const rows = [
     nf: "123456",
   },
 ];
+interface ITableReferenceProps {
+  referenceData: IReference[];
+}
 
-export default function TableReference() {
+export default function TableReference(referenceData: ITableReferenceProps) {
   const navigate = useNavigate();
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const isLoading = false;
