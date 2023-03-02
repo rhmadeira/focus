@@ -3,6 +3,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from "@mui/material";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
@@ -17,26 +18,33 @@ export function OptionSideBar({ icon, open, label, to }: ILinkSideBarProps) {
   const resolverPath = useResolvedPath(to);
   const match = useMatch({ path: resolverPath.pathname, end: false });
   return (
-    <Link to={to}>
-      <ListItemButton
-        selected={!!match}
-        sx={{
-          minHeight: 48,
-          justifyContent: open ? "initial" : "center",
-          px: 2.5,
-        }}
-      >
-        <ListItemIcon
+    <Tooltip
+      title={label}
+      placement="right"
+      enterDelay={500}
+      disableHoverListener={open}
+    >
+      <Link to={to}>
+        <ListItemButton
+          selected={!!match}
           sx={{
-            minWidth: 0,
-            mr: open ? 3 : "auto",
-            justifyContent: "center",
+            minHeight: 48,
+            justifyContent: open ? "initial" : "center",
+            px: 2.5,
           }}
         >
-          <Icon color={open ? "primary" : "secondary"}>{icon}</Icon>
-        </ListItemIcon>
-        <ListItemText primary={label} sx={{ opacity: open ? 1 : 0 }} />
-      </ListItemButton>
-    </Link>
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: open ? 3 : "auto",
+              justifyContent: "center",
+            }}
+          >
+            <Icon color={open ? "primary" : "secondary"}>{icon}</Icon>
+          </ListItemIcon>
+          <ListItemText primary={label} sx={{ opacity: open ? 1 : 0 }} />
+        </ListItemButton>
+      </Link>
+    </Tooltip>
   );
 }

@@ -16,6 +16,7 @@ import { IReference } from "../../shared/services/schemas/referenceSchema";
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const [reference, setReference] = useState<IReference[]>([]);
+  // const [partnersFiltered, setPartnersFiltered] = useState<IPartner[]>([]);
   const [searchParams, setsearchParams] = useSearchParams();
   const {
     control,
@@ -28,15 +29,21 @@ export default function Reference() {
   async function handleSearchRef(reference: SearchRefFormData) {
     const { value } = await getReference(reference);
     setReference(value);
+    console.log(value);
   }
 
-  // const busca = useMemo(() => {
-  //   return searchParams.get("busca") || "";
-  // }, [searchParams]);
+  //filtro de busca do integra
 
-  // const page = useMemo(() => {
-  //   return Number(searchParams.get("pagina") || "1");
-  // }, [searchParams]);
+  // const handleClickButtonFilter = (data: IFormSearch) => {
+  //   const Filtered = partners?.data?.filter(
+  //     (partner) =>
+  //       partner.nome.toUpperCase().includes(data.search.toLocaleUpperCase()) ||
+  //       partner.cnpj.toUpperCase().includes(data.search.toLocaleUpperCase()) ||
+  //       partner.id.toString().includes(data.search)
+  //   );
+  //   console.log(Filtered);
+  //   if (Filtered) setPartnersFiltered(Filtered);
+  // };
 
   return (
     <LayoutBasePage title="Referência">

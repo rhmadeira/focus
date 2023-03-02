@@ -14,8 +14,8 @@ export interface IReference {
   tipo: string;
   nome_destinatario: string;
   valor_total: string;
-  data_emissao?: Date;
-  data_envio: Date;
+  data_emissao?: string;
+  data_envio: string;
   http_request_query: string;
   http_request_body: string;
   http_request_ip: string;
