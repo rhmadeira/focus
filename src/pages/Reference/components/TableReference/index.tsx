@@ -32,7 +32,6 @@ export default function TableReference(referenceData: ITableReferenceProps) {
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-  console.log("render");
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {

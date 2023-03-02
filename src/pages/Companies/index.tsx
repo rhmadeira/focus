@@ -44,8 +44,6 @@ export default function Companies() {
     resolver: zodResolver(schemaSearch),
   });
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
-  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
   async function handleSearch(input: SearchFormData) {
     try {
