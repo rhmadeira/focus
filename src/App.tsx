@@ -3,8 +3,7 @@ import Login from "./pages/Login";
 import { AppRoutes } from "./routes/AppRautes";
 
 function App() {
-  const token = true;
-  return <Box>{!token ? <Login /> : <AppRoutes />}</Box>;
+  return <AppRoutes />;
 }
 
 export default App;
