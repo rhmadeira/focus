@@ -15,7 +15,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route element={<LayoutSideBar />}>
-        <Route path="/" element={<a>home</a>} />
+        <Route path="/" element={<Navigate to="/referencia" />} />
         <Route path="referencia" element={<Reference />} />
 
         <Route path="colaborador" element={<Collaborators />} />
@@ -30,6 +30,7 @@ export function AppRoutes() {
         <Route path="perfil/editar/:id" element={<Profile />} />
 
         <Route path="titulos" element={<Ticket />} />
+        <Route path="*" element={<Navigate to="/referencia" />} />
       </Route>
     </Routes>
   );
