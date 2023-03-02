@@ -14,10 +14,12 @@ import { IReference } from "../../shared/services/schemas/referenceSchema";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const [isLoading, setIsLoading] = useState(false);
   const [partnersFiltered, setPartnersFiltered] = useState<IReference[]>([]);
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<SearchRefFormData>({
     resolver: zodResolver(schemaSearchRef),
@@ -25,6 +27,7 @@ export default function Reference() {
 
   async function handleSearchRef(data: SearchRefFormData) {
     try {
+      setIsLoading(true);
       const { value } = await getReference(data);
       setPartnersFiltered(value);
 
@@ -50,6 +53,9 @@ export default function Reference() {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsLoading(false);
+      reset();
     }
   }
 
@@ -125,7 +131,10 @@ export default function Reference() {
           </Box>
         </LayoutFormBase>
         <Box width="100%">
-          <TableReference referenceData={partnersFiltered} />
+          <TableReference
+            referenceData={partnersFiltered}
+            isLoading={isLoading}
+          />
         </Box>
       </Box>
     </LayoutBasePage>

@@ -2,13 +2,12 @@ import {
   Box,
   Icon,
   IconButton,
-  LinearProgress,
   Paper,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableFooter,
   TableHead,
   TablePagination,
   TableRow,
@@ -22,9 +21,13 @@ import { formatDate } from "../../../../shared/utils/formaters";
 
 interface ITableReferenceProps {
   referenceData: IReference[];
+  isLoading: boolean;
 }
 
-export default function TableReference(referenceData: ITableReferenceProps) {
+export default function TableReference({
+  referenceData,
+  isLoading,
+}: ITableReferenceProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
@@ -56,46 +59,60 @@ export default function TableReference(referenceData: ITableReferenceProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {referenceData.referenceData
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow hover key={`${row.id} ${index}`}>
-                    <TableCell>
-                      {row.data_emissao && formatDate(row.data_emissao)}
+            {isLoading ? (
+              [...Array(6)].map((_, index) => (
+                <TableRow key={index}>
+                  {[...Array(8)].map((_, index) => (
+                    <TableCell key={index}>
+                      <Skeleton height="30px" />
                     </TableCell>
-                    <TableCell>{row.nome_emitente}</TableCell>
-                    <TableCell>{row.numero}</TableCell>
-                    <TableCell>{row.ref}</TableCell>
-                    <TableCell>
-                      <Typography
-                        color="var(--blue500)"
-                        fontWeight="bold"
-                        fontSize="1.05rem"
-                      >
-                        R$ {row.valor_total}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>{row.nome_destinatario}</TableCell>
-                    <TableCell>{row.status}</TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <>
+                {referenceData
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    return (
+                      <TableRow hover key={`${row.id} ${index}`}>
+                        <TableCell>
+                          {row.data_emissao && formatDate(row.data_emissao)}
+                        </TableCell>
+                        <TableCell>{row.nome_emitente}</TableCell>
+                        <TableCell>{row.numero}</TableCell>
+                        <TableCell>{row.ref}</TableCell>
+                        <TableCell>
+                          <Typography
+                            color="var(--blue500)"
+                            fontWeight="bold"
+                            fontSize="1.05rem"
+                          >
+                            R$ {row.valor_total}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>{row.nome_destinatario}</TableCell>
+                        <TableCell>{row.status}</TableCell>
 
-                    <TableCell>
-                      <Box display="flex" gap={1} alignItems="center">
-                        <Typography marginRight="5px">Ver mais</Typography>
-                        <IconButton size="small">
-                          <Icon fontSize="small">visibility</Icon>
-                        </IconButton>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+                        <TableCell>
+                          <Box display="flex" gap={1} alignItems="center">
+                            <Typography marginRight="5px">Ver mais</Typography>
+                            <IconButton size="small">
+                              <Icon fontSize="small">visibility</Icon>
+                            </IconButton>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+              </>
+            )}
           </TableBody>
         </Table>
         <TablePagination
           rowsPerPageOptions={[5, 15, 30]}
           component="div"
-          count={referenceData.referenceData.length || 0}
+          count={referenceData.length || 0}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
