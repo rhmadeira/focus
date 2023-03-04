@@ -1,6 +1,6 @@
 import axios from "axios";
-import { NewCompanyData } from "../../../../pages/Companies/schemas";
-import { api } from "../axios";
+import { NewCompanyData } from "../../pages/Companies/schemas";
+import { api } from "./api/axios";
 
 export const setCompany = async (data: NewCompanyData) =>
   api.post("/companies", data);

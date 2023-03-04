@@ -19,7 +19,7 @@ import {
   NewCollaboratorData,
   schemaNewCollaborator,
 } from "../schemas/colaboratorsSchemas";
-import { setCollaborator } from "../../../shared/services/api/collaborators";
+import { setCollaborator } from "../../../shared/services/collaborators";
 
 export function NewCollaborators() {
   const {

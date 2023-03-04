@@ -12,12 +12,13 @@ import {
   TablePagination,
   TableRow,
   Theme,
+  Tooltip,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
 import { IReference } from "../../../../shared/services/schemas/referenceSchema";
-import { formatDate } from "../../../../shared/utils/formaters";
+import { coverterMoeda, formatDate } from "../../../../shared/utils/formaters";
 
 interface ITableReferenceProps {
   referenceData: IReference[];
@@ -29,7 +30,7 @@ export default function TableReference({
   isLoading,
 }: ITableReferenceProps) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(8);
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -46,18 +47,22 @@ export default function TableReference({
     <Box flex={1} overflow="auto" marginTop={smDown ? "5px" : "10px"}>
       <TableContainer component={Paper} variant="outlined">
         <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>Emissão</TableCell>
-              <TableCell>Empresa</TableCell>
-              <TableCell>Número</TableCell>
-              <TableCell>Referencia</TableCell>
-              <TableCell>Valor</TableCell>
-              <TableCell>Nome do Destinatario</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell width={150}>Detalhes</TableCell>
-            </TableRow>
-          </TableHead>
+          {referenceData.length !== 0 && (
+            <TableHead>
+              <TableRow>
+                <TableCell>Referencia</TableCell>
+                <TableCell>Empresa</TableCell>
+                <TableCell>Emissão</TableCell>
+                {/* <TableCell>Número</TableCell> */}
+                <TableCell>Valor</TableCell>
+                <TableCell>Nome do Destinatario</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell width={150} align="center">
+                  Detalhes
+                </TableCell>
+              </TableRow>
+            </TableHead>
+          )}
           <TableBody>
             {isLoading ? (
               [...Array(6)].map((_, index) => (
@@ -77,30 +82,34 @@ export default function TableReference({
                     return (
                       <TableRow hover key={`${row.id} ${index}`}>
                         <TableCell>
-                          {row.data_emissao && formatDate(row.data_emissao)}
-                        </TableCell>
-                        <TableCell>{row.nome_emitente}</TableCell>
-                        <TableCell>{row.numero}</TableCell>
-                        <TableCell>{row.ref}</TableCell>
-                        <TableCell>
                           <Typography
                             color="var(--blue500)"
                             fontWeight="bold"
                             fontSize="1.05rem"
                           >
-                            R$ {row.valor_total}
+                            {row.ref}
                           </Typography>
                         </TableCell>
+                        <TableCell>{row.nome_emitente}</TableCell>
+                        <TableCell>
+                          {row.data_emissao && formatDate(row.data_emissao)}
+                        </TableCell>
+                        {/* <TableCell>{row.numero}</TableCell> */}
+                        <TableCell>{coverterMoeda(+row.valor_total)}</TableCell>
                         <TableCell>{row.nome_destinatario}</TableCell>
                         <TableCell>{row.status}</TableCell>
 
-                        <TableCell>
-                          <Box display="flex" gap={1} alignItems="center">
-                            <Typography marginRight="5px">Ver mais</Typography>
+                        <TableCell align="center">
+                          <Tooltip title="Ver detalhes">
                             <IconButton size="small">
                               <Icon fontSize="small">visibility</Icon>
                             </IconButton>
-                          </Box>
+                          </Tooltip>
+                          <Tooltip title="Imprimir documento">
+                            <IconButton size="small">
+                              <Icon fontSize="small">document_scanner</Icon>
+                            </IconButton>
+                          </Tooltip>
                         </TableCell>
                       </TableRow>
                     );
@@ -109,15 +118,17 @@ export default function TableReference({
             )}
           </TableBody>
         </Table>
-        <TablePagination
-          rowsPerPageOptions={[5, 15, 30]}
-          component="div"
-          count={referenceData.length || 0}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        {referenceData.length !== 0 && (
+          <TablePagination
+            rowsPerPageOptions={[8, 20, 30]}
+            component="div"
+            count={referenceData.length || 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        )}
       </TableContainer>
     </Box>
   );

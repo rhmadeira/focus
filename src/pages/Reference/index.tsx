@@ -1,4 +1,11 @@
-import { Box, Divider, Icon, Theme, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Icon,
+  Theme,
+  Tooltip,
+  useMediaQuery,
+} from "@mui/material";
 import Button from "@mui/material/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -20,6 +27,7 @@ export default function Reference() {
     control,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<SearchRefFormData>({
     resolver: zodResolver(schemaSearchRef),
@@ -72,52 +80,58 @@ export default function Reference() {
         <LayoutFormBase handleSearch={handleSubmit(handleSearchRef)}>
           <SubTitle>Buscar Referência:</SubTitle>
           <Divider />
-          {/* <Box
-        </Box> */}
           <Box
             display="flex"
-            flex={1}
-            gap={smDown ? 1 : 2}
-            flexWrap={{ xs: "wrap", sm: "nowrap" }}
+            justifyContent="space-between"
+            gap={2}
+            alignItems="center"
           >
-            <InputControlled
-              controller={{
-                control,
-                name: "company",
-                defaultValue: "",
-              }}
-              label="Empresa"
-              size="small"
-              type="text"
-            />
-            <InputControlled
-              controller={{
-                control,
-                name: "reference",
-                defaultValue: "",
-              }}
-              label="Referência"
-              size="small"
-            />
+            <Box
+              display="flex"
+              flex={1}
+              gap={smDown ? 1 : 2}
+              flexWrap={{ xs: "wrap", sm: "nowrap" }}
+            >
+              <InputControlled
+                controller={{
+                  control,
+                  name: "company",
+                  defaultValue: "",
+                }}
+                label="Empresa"
+                size="small"
+                type="text"
+              />
+              <InputControlled
+                controller={{
+                  control,
+                  name: "reference",
+                  defaultValue: "",
+                }}
+                label="Referência"
+                size="small"
+              />
 
-            <InputControlled
-              controller={{
-                control,
-                name: "number",
-                defaultValue: "",
-              }}
-              label="Número"
-              size="small"
-            />
-            <InputControlled
-              controller={{
-                control,
-                name: "nRPS",
-                defaultValue: "",
-              }}
-              label="N.RPS"
-              size="small"
-            />
+              <InputControlled
+                controller={{
+                  control,
+                  name: "number",
+                  defaultValue: "",
+                }}
+                label="Número"
+                size="small"
+              />
+              <InputControlled
+                controller={{
+                  control,
+                  name: "nRPS",
+                  defaultValue: "",
+                }}
+                label="N.RPS"
+                size="small"
+              />
+            </Box>
+
             <Box>
               <Button
                 startIcon={<Icon>search</Icon>}
@@ -125,9 +139,17 @@ export default function Reference() {
                 variant="contained"
                 size="medium"
               >
-                Buscar
+                {watch("company") ||
+                watch("reference") ||
+                watch("number") ||
+                watch("nRPS")
+                  ? "Buscar"
+                  : "Buscar Todos"}
               </Button>
             </Box>
+            <Tooltip title="Para pesquisar todos,   não preencher os campos de filtro.">
+              <Icon fontSize="small">info</Icon>
+            </Tooltip>
           </Box>
         </LayoutFormBase>
         <Box width="100%">

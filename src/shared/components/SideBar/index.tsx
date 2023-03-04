@@ -12,10 +12,10 @@ import { AppBar, Drawer, DrawerHeader } from "./styles";
 import Logo from "../../../assets/logo.svg";
 import { Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
-import { useAppThemeContext } from "../../context";
 import { ProfileBtn } from "./components/ProfileBtn";
 import { ToggleThemeSwitch } from "./components/ToggleThemeSwitch";
 import { OptionSideBar } from "./components/OptionSideBar";
+import { useAppThemeContext } from "../../context/ThemeContext";
 
 export default function MiniDrawer() {
   const theme = useTheme();

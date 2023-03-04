@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Profile } from "../pages/Profile";
 
-import Ticket from "../pages/Ticket";
 import LayoutSideBar from "../shared/layouts/LayoutSideBar";
 import Reference from "../pages/Reference";
 import Collaborators from "../pages/Collaborators";
@@ -29,7 +28,6 @@ export function AppRoutes() {
         <Route path="perfil" element={<Profile />} />
         <Route path="perfil/editar/:id" element={<Profile />} />
 
-        <Route path="titulos" element={<Ticket />} />
         <Route path="*" element={<Navigate to="/referencia" />} />
       </Route>
     </Routes>

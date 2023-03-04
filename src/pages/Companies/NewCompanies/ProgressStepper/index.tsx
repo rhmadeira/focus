@@ -15,7 +15,7 @@ import { GeneralContability } from "./form/GeneralContability";
 import { UserTokens } from "./form/UserTokens";
 import LayoutFormBase from "../../../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../../../shared/components/SubTitle";
-import { setCompany } from "../../../../shared/services/api/company";
+import { setCompany } from "../../../../shared/services/company";
 
 const steps = [
   "Identificação",

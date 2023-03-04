@@ -3,16 +3,6 @@ import {
   Button,
   Divider,
   Icon,
-  IconButton,
-  LinearProgress,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TableRow,
   Theme,
   useMediaQuery,
 } from "@mui/material";
@@ -23,11 +13,11 @@ import { useState } from "react";
 import * as zod from "zod";
 
 import InputControlled from "../../shared/components/form/InputControlled";
-import { getCollaborators } from "../../shared/services/api/collaborators";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import LayoutFormBase from "../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../shared/components/SubTitle";
 import TableCollaborators from "./components/TableCollaborators";
+import { getCollaborators } from "../../shared/services/collaborators";
 
 const schemaSearch = zod.object({
   nome: zod.string(),

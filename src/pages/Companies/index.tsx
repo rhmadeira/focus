@@ -3,16 +3,6 @@ import {
   Button,
   Divider,
   Icon,
-  IconButton,
-  LinearProgress,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TableRow,
   Theme,
   useMediaQuery,
 } from "@mui/material";
@@ -26,9 +16,9 @@ import { useState } from "react";
 import * as zod from "zod";
 
 import SubTitle from "../../shared/components/SubTitle";
-import { getCompanies } from "../../shared/services/api/company";
 import { NewCompanyDataResponse } from "./schemas";
 import TableCompanies from "./components/TableCopanies";
+import { getCompanies } from "../../shared/services/company";
 
 const schemaSearch = zod.object({
   nome: zod.string(),
