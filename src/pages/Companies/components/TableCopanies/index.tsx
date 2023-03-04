@@ -56,7 +56,7 @@ export default function TableCompanies({
                 <TableCell>Nome Fantasia</TableCell>
                 <TableCell>CNPJ</TableCell>
                 <TableCell>Última Emissão</TableCell>
-                <TableCell align="right">Ações</TableCell>
+                <TableCell align="left">Ações</TableCell>
               </TableRow>
             </TableHead>
           )}
