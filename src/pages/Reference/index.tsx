@@ -39,23 +39,23 @@ export default function Reference() {
       const { value } = await getReference(data);
       setPartnersFiltered(value);
 
-      if (data.company) {
+      if (data.nome_emitente) {
         const filtered = value.filter((ref) =>
           ref.nome_emitente
             .toUpperCase()
-            .includes(data.company?.toUpperCase() || "")
+            .includes(data.nome_emitente?.toUpperCase() || "")
         );
         setPartnersFiltered(filtered);
       }
-      if (data.reference) {
+      if (data.ref) {
         const filtered = value.filter((ref) =>
-          ref.ref.toUpperCase().includes(data.reference?.toUpperCase() || "")
+          ref.ref.toUpperCase().includes(data.ref?.toUpperCase() || "")
         );
         setPartnersFiltered(filtered);
       }
-      if (data.number) {
+      if (data.numero) {
         const filtered = value.filter((ref) =>
-          ref.numero.toUpperCase().includes(data.number?.toUpperCase() || "")
+          ref.numero.toUpperCase().includes(data.numero?.toUpperCase() || "")
         );
         setPartnersFiltered(filtered);
       }
@@ -95,7 +95,7 @@ export default function Reference() {
               <InputControlled
                 controller={{
                   control,
-                  name: "company",
+                  name: "nome_emitente",
                   defaultValue: "",
                 }}
                 label="Empresa"
@@ -105,7 +105,7 @@ export default function Reference() {
               <InputControlled
                 controller={{
                   control,
-                  name: "reference",
+                  name: "ref",
                   defaultValue: "",
                 }}
                 label="Referência"
@@ -115,19 +115,10 @@ export default function Reference() {
               <InputControlled
                 controller={{
                   control,
-                  name: "number",
+                  name: "numero",
                   defaultValue: "",
                 }}
                 label="Número"
-                size="small"
-              />
-              <InputControlled
-                controller={{
-                  control,
-                  name: "nRPS",
-                  defaultValue: "",
-                }}
-                label="N.RPS"
                 size="small"
               />
             </Box>
@@ -139,17 +130,11 @@ export default function Reference() {
                 variant="contained"
                 size="medium"
               >
-                {watch("company") ||
-                watch("reference") ||
-                watch("number") ||
-                watch("nRPS")
+                {watch("nome_emitente") || watch("ref") || watch("numero")
                   ? "Buscar"
                   : "Buscar Todos"}
               </Button>
             </Box>
-            <Tooltip title="Para pesquisar todos,   não preencher os campos de filtro.">
-              <Icon fontSize="small">info</Icon>
-            </Tooltip>
           </Box>
         </LayoutFormBase>
         <Box width="100%">

@@ -137,6 +137,13 @@ export default function Rows({ dataRow }: ITableReferenceProps) {
                   <TableHead>
                     <TableRow hover onClick={handleClickParams}>
                       <TableCell>Parametros recebidos</TableCell>
+                      <TableCell align="right">
+                        {!openParams && (
+                          <IconButton size="small">
+                            <VisibilityIcon fontSize="small" />
+                          </IconButton>
+                        )}
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -151,7 +158,7 @@ export default function Rows({ dataRow }: ITableReferenceProps) {
                             gap={2}
                             lineHeight="1.5rem"
                             overflow="auto"
-                            height="200px"
+                            height="150px"
                             width={{ xs: "100%", md: "450px" }}
                             sx={{
                               wordBreak: "break-all",

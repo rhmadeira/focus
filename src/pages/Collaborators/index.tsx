@@ -17,7 +17,8 @@ import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import LayoutFormBase from "../../shared/layouts/LayoutFormBase";
 import SubTitle from "../../shared/components/SubTitle";
 import TableCollaborators from "./components/TableCollaborators";
-import { getCollaborators } from "../../shared/services/collaborators";
+import { ICollaborator } from "../../shared/services/schemas/collaboratorsSchema";
+import { getAllCollaborators } from "../../shared/services/collaborators";
 
 const schemaSearch = zod.object({
   nome: zod.string(),
@@ -25,28 +26,23 @@ const schemaSearch = zod.object({
 
 export type SearchFormData = zod.infer<typeof schemaSearch>;
 
-type Collaborator = {
-  id: number;
-  name: string;
-  email: string;
-};
-
 export default function Collaborators() {
-  const [rows, setRows] = useState<Collaborator[]>([]);
+  const [collaboratorData, setCollaboratorData] = useState<ICollaborator[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
-  const { control, handleSubmit } = useForm<SearchFormData>({
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const { control, handleSubmit, watch } = useForm<SearchFormData>({
     resolver: zodResolver(schemaSearch),
   });
-  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
-  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-  const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
+
+  console.log("collaboratorData", collaboratorData);
 
   async function handleSearch(input: SearchFormData) {
     try {
       setIsLoading(true);
-      const { data, status } = await getCollaborators(input.nome);
-      setRows(data);
+      const response = await getAllCollaborators();
+      if (response) setCollaboratorData(response);
     } catch (error) {
       console.log(error);
     } finally {
@@ -77,7 +73,7 @@ export default function Collaborators() {
               variant={smDown ? "text" : "outlined"}
               onClick={() => navigate("/colaborador/novo")}
             >
-              Colaborador
+              Novo Colaborador
             </Button>
           </Box>
 
@@ -88,28 +84,40 @@ export default function Collaborators() {
             gap={1}
             width="100%"
           >
-            <InputControlled
-              controller={{
-                control,
-                name: "nome",
-                defaultValue: "",
-              }}
-              size="small"
-              label="Nome ou email"
-              variant="outlined"
-            />
-            <Button
-              startIcon={<Icon>search</Icon>}
-              type="submit"
-              variant="contained"
-              size="small"
+            <Box
+              display="flex"
+              flex={1}
+              gap={smDown ? 1 : 2}
+              flexWrap={{ xs: "wrap", sm: "nowrap" }}
             >
-              Buscar
-            </Button>
+              <InputControlled
+                controller={{
+                  control,
+                  name: "nome",
+                  defaultValue: "",
+                }}
+                size="small"
+                label="Email"
+                variant="outlined"
+              />
+            </Box>
+            <Box>
+              <Button
+                startIcon={<Icon>search</Icon>}
+                type="submit"
+                variant="contained"
+                size="medium"
+              >
+                {watch("nome") ? "Buscar" : "Buscar Todos"}
+              </Button>
+            </Box>
           </Box>
         </LayoutFormBase>
         <Box width="100%">
-          <TableCollaborators />
+          <TableCollaborators
+            isLoading={isLoading}
+            collaboratorData={collaboratorData}
+          />
         </Box>
       </Box>
     </LayoutBasePage>
