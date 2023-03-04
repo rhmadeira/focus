@@ -85,12 +85,14 @@ export default function Reference() {
             justifyContent="space-between"
             gap={2}
             alignItems="center"
+            flexDirection={{ xs: "column", sm: "row" }}
           >
             <Box
               display="flex"
               flex={1}
               gap={smDown ? 1 : 2}
               flexWrap={{ xs: "wrap", sm: "nowrap" }}
+              minWidth="200px"
             >
               <InputControlled
                 controller={{
@@ -123,7 +125,7 @@ export default function Reference() {
               />
             </Box>
 
-            <Box>
+            <Box display="flex">
               <Button
                 startIcon={<Icon>search</Icon>}
                 type="submit"

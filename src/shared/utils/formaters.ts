@@ -6,6 +6,12 @@ export const formatDate = (date: string) => {
   return `${day}/${month}/${year}`;
 };
 
+export const formatDateBr = (date: Date) => {
+  const dateInput = new Date(date);
+  const formatedate = dateInput.toLocaleDateString("pt-BR");
+  return formatedate;
+};
+
 export const cnpjMask = (value: string) => {
   return value
     .replace(/\D/g, "")

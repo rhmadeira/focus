@@ -89,6 +89,7 @@ export default function Collaborators() {
               flex={1}
               gap={smDown ? 1 : 2}
               flexWrap={{ xs: "wrap", sm: "nowrap" }}
+              minWidth="200px"
             >
               <InputControlled
                 controller={{
@@ -101,12 +102,12 @@ export default function Collaborators() {
                 variant="outlined"
               />
             </Box>
-            <Box>
+            <Box display="flex">
               <Button
                 startIcon={<Icon>search</Icon>}
                 type="submit"
                 variant="contained"
-                size="medium"
+                size="small"
               >
                 {watch("nome") ? "Buscar" : "Buscar Todos"}
               </Button>

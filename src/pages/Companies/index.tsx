@@ -18,7 +18,8 @@ import * as zod from "zod";
 import SubTitle from "../../shared/components/SubTitle";
 import { NewCompanyDataResponse } from "./schemas";
 import TableCompanies from "./components/TableCopanies";
-import { getCompanies } from "../../shared/services/company";
+import { getAllCompanies } from "../../shared/services/company";
+import { ICompany } from "../../shared/services/schemas/companySchema";
 
 const schemaSearch = zod.object({
   nome: zod.string(),
@@ -28,9 +29,9 @@ export type SearchFormData = zod.infer<typeof schemaSearch>;
 
 export default function Companies() {
   const [isLoading, setIsLoading] = useState(false);
-  const [rows, setRows] = useState<NewCompanyDataResponse[]>([]);
+  const [companiesData, setcompaniesData] = useState<ICompany[]>([]);
   const navigate = useNavigate();
-  const { control, handleSubmit } = useForm<SearchFormData>({
+  const { control, handleSubmit, watch } = useForm<SearchFormData>({
     resolver: zodResolver(schemaSearch),
   });
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
@@ -38,8 +39,8 @@ export default function Companies() {
   async function handleSearch(input: SearchFormData) {
     try {
       setIsLoading(true);
-      const { data, status } = await getCompanies(input.nome);
-      setRows(data);
+      const data = await getAllCompanies();
+      if (data) setcompaniesData(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -68,7 +69,7 @@ export default function Companies() {
               variant={smDown ? "text" : "outlined"}
               onClick={() => navigate("/empresa/nova")}
             >
-              Empresa
+              Nova Empresa
             </Button>
           </Box>
           <Divider />
@@ -78,28 +79,43 @@ export default function Companies() {
             gap={1}
             width="100%"
           >
-            <InputControlled
-              controller={{
-                control,
-                name: "nome",
-                defaultValue: "",
-              }}
-              size="small"
-              label="Nome ou CPF"
-              variant="outlined"
-            />
-            <Button
-              startIcon={<Icon>search</Icon>}
-              type="submit"
-              variant="contained"
-              size="small"
+            <Box
+              display="flex"
+              flex={1}
+              gap={smDown ? 1 : 2}
+              flexWrap={{ xs: "wrap", sm: "nowrap" }}
+              minWidth="200px"
             >
-              Buscar
-            </Button>
+              <InputControlled
+                controller={{
+                  control,
+                  name: "nome",
+                  defaultValue: "",
+                }}
+                size="small"
+                label="Nome ou CPF"
+                variant="outlined"
+              />
+            </Box>
+            <Box display="flex">
+              <Button
+                startIcon={<Icon>search</Icon>}
+                type="submit"
+                variant="contained"
+                size="small"
+              >
+                {watch("nome") ? "Buscar" : "Buscar todos"}
+              </Button>
+            </Box>
           </Box>
         </LayoutFormBase>
         <Box width="100%">
-          <TableCompanies />
+          {
+            <TableCompanies
+              isLoading={isLoading}
+              companiesData={companiesData}
+            />
+          }
         </Box>
       </Box>
     </LayoutBasePage>
