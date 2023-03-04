@@ -1,7 +1,5 @@
 import {
   Box,
-  Icon,
-  IconButton,
   Paper,
   Skeleton,
   Table,
@@ -12,13 +10,11 @@ import {
   TablePagination,
   TableRow,
   Theme,
-  Tooltip,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
 import { IReference } from "../../../../shared/services/schemas/referenceSchema";
-import { coverterMoeda, formatDate } from "../../../../shared/utils/formaters";
+import Rows from "./Rows";
 
 interface ITableReferenceProps {
   referenceData: IReference[];
@@ -53,13 +49,11 @@ export default function TableReference({
                 <TableCell>Referencia</TableCell>
                 <TableCell>Empresa</TableCell>
                 <TableCell>Emissão</TableCell>
-                {/* <TableCell>Número</TableCell> */}
+                <TableCell>Número</TableCell>
                 <TableCell>Valor</TableCell>
                 <TableCell>Nome do Destinatario</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell width={150} align="center">
-                  Detalhes
-                </TableCell>
+                <TableCell width={10} align="center"></TableCell>
               </TableRow>
             </TableHead>
           )}
@@ -79,40 +73,7 @@ export default function TableReference({
                 {referenceData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
-                    return (
-                      <TableRow hover key={`${row.id} ${index}`}>
-                        <TableCell>
-                          <Typography
-                            color="var(--blue500)"
-                            fontWeight="bold"
-                            fontSize="1.05rem"
-                          >
-                            {row.ref}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>{row.nome_emitente}</TableCell>
-                        <TableCell>
-                          {row.data_emissao && formatDate(row.data_emissao)}
-                        </TableCell>
-                        {/* <TableCell>{row.numero}</TableCell> */}
-                        <TableCell>{coverterMoeda(+row.valor_total)}</TableCell>
-                        <TableCell>{row.nome_destinatario}</TableCell>
-                        <TableCell>{row.status}</TableCell>
-
-                        <TableCell align="center">
-                          <Tooltip title="Ver detalhes">
-                            <IconButton size="small">
-                              <Icon fontSize="small">visibility</Icon>
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title="Imprimir documento">
-                            <IconButton size="small">
-                              <Icon fontSize="small">document_scanner</Icon>
-                            </IconButton>
-                          </Tooltip>
-                        </TableCell>
-                      </TableRow>
-                    );
+                    return <Rows key={`${row.id} ${row.ref}`} dataRow={row} />;
                   })}
               </>
             )}
