@@ -11,10 +11,10 @@ export default function CardReference({
   referenceData,
   isLoading,
 }: CardReferenceProps) {
-  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   return (
-    <Box flex={1} overflow="auto" marginTop={smDown ? "5px" : "10px"}>
+    <Box flex={1} overflow="auto" marginTop={mdDown ? "5px" : "10px"}>
       {referenceData.map((ref) => (
         <DataCard
           key={ref.id}

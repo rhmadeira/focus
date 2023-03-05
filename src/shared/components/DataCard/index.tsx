@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled, Theme, useTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Collapse from "@mui/material/Collapse";
@@ -14,6 +14,7 @@ import {
   ListItem,
   Stack,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import {
   coverterMoeda,
@@ -73,11 +74,13 @@ export default function DataCard({
 }: DataCardProps) {
   const [expanded, setExpanded] = React.useState(false);
   const theme = useTheme();
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  console.log(smDown);
   return (
     <Card sx={{ minWidth: 275, marginBottom: 1 }}>
       <CardContent>
@@ -165,8 +168,11 @@ export default function DataCard({
       </CardContent>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {/* <Box display="flex" gap={1} maxWidth="300px" bgcolor="red"> */}
-          <Box display="flex" flexDirection="column" width="200px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            width={smDown ? "240px" : "500px"}
+          >
             <Typography variant="h6">Detalhes</Typography>
             <List dense>
               <ListItem>
@@ -174,8 +180,10 @@ export default function DataCard({
                   <Typography
                     fontSize="0.8rem"
                     variant="body2"
-                    textOverflow="ellipsis"
-                    overflow="hidden"
+                    {...(smDown && {
+                      textOverflow: "ellipsis",
+                      overflow: "hidden",
+                    })}
                   >
                     <strong>Chave da Nf-e:</strong> {chave_nfe}
                   </Typography>

@@ -22,6 +22,7 @@ import CardReference from "./components/CardReference";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
   const [isLoading, setIsLoading] = useState(false);
   const [partnersFiltered, setPartnersFiltered] = useState<IReference[]>([]);
   const {
@@ -141,7 +142,7 @@ export default function Reference() {
           </Box>
         </LayoutFormBase>
         <Box width="100%">
-          {smDown ? (
+          {mdDown ? (
             <CardReference
               referenceData={partnersFiltered}
               isLoading={isLoading}
