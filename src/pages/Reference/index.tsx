@@ -18,6 +18,7 @@ import TableReference from "./components/TableReference";
 import { useState } from "react";
 import { getReference } from "../../shared/services/reference";
 import { IReference } from "../../shared/services/schemas/referenceSchema";
+import CardReference from "./components/CardReference";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
@@ -140,10 +141,17 @@ export default function Reference() {
           </Box>
         </LayoutFormBase>
         <Box width="100%">
-          <TableReference
-            referenceData={partnersFiltered}
-            isLoading={isLoading}
-          />
+          {smDown ? (
+            <CardReference
+              referenceData={partnersFiltered}
+              isLoading={isLoading}
+            />
+          ) : (
+            <TableReference
+              referenceData={partnersFiltered}
+              isLoading={isLoading}
+            />
+          )}
         </Box>
       </Box>
     </LayoutBasePage>

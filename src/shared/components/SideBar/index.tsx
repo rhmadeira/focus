@@ -33,11 +33,9 @@ export default function MiniDrawer() {
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        width: "100vw",
-        height: "100%",
-      }}
+      display="flex"
+      width="100vw"
+      height="auto" //era 100% troquei para auto verificar onde quebra
       bgcolor={theme.palette.background.default}
     >
       <AppBar open={open}>
@@ -61,11 +59,7 @@ export default function MiniDrawer() {
           </div>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        open={open}
-        // style={{ backgroundColor: "transparent" }}
-      >
+      <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose} sx={{ color: "white" }}>
             {theme.direction === "rtl" ? (

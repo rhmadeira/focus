@@ -56,9 +56,7 @@ export default function Rows({ dataRow }: ITableReferenceProps) {
           </Typography>
         </TableCell>
         <TableCell>{dataRow.nome_emitente}</TableCell>
-        <TableCell>
-          {dataRow.data_emissao && formatDate(dataRow.data_emissao)}
-        </TableCell>
+        <TableCell>{formatDate(dataRow.data_emissao)}</TableCell>
         <TableCell>{dataRow.numero}</TableCell>
         <TableCell>{coverterMoeda(+dataRow.valor_total)}</TableCell>
         <TableCell>{dataRow.nome_destinatario}</TableCell>

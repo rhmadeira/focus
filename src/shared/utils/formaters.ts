@@ -53,3 +53,8 @@ export const coverterMoeda = (value: number) => {
     currency: "BRL",
   });
 };
+export const coverterMoedaSemSimbolo = (value: number) => {
+  return value.toLocaleString("pt-br", {
+    minimumFractionDigits: 2,
+  });
+};
