@@ -7,6 +7,9 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Button,
   Divider,
@@ -42,6 +45,7 @@ interface DataCardProps {
   request_path: string;
   request_query: string;
   request_ip: string;
+  http_request_body: string;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -71,6 +75,7 @@ export default function DataCard({
   request_path,
   request_query,
   request_ip,
+  http_request_body,
 }: DataCardProps) {
   const [expanded, setExpanded] = React.useState(false);
   const theme = useTheme();
@@ -91,7 +96,7 @@ export default function DataCard({
           justifyContent="space-between"
         >
           <Box>
-            <Typography>{company}</Typography>
+            <Typography fontWeight="bold">{company}</Typography>
           </Box>
           <Box>
             <ExpandMore
@@ -185,20 +190,13 @@ export default function DataCard({
                       overflow: "hidden",
                     })}
                   >
-                    <strong>Chave da Nf-e:</strong> {chave_nfe}
+                    <strong>Chave da Nf-e:</strong> <br /> {chave_nfe}
                   </Typography>
                 </Tooltip>
               </ListItem>
               <ListItem>
                 <Typography fontSize="0.8rem" variant="body2">
-                  <strong>Status Sefaz:</strong>
-                </Typography>
-                <Typography
-                  fontSize="0.8rem"
-                  variant="body2"
-                  textOverflow="ellipsis"
-                >
-                  {status_sefaz}
+                  <strong>Status Sefaz:</strong> <br /> {status_sefaz}
                 </Typography>
               </ListItem>
               <ListItem>
@@ -209,13 +207,13 @@ export default function DataCard({
               </ListItem>
               <ListItem>
                 <Typography fontSize="0.8rem" variant="body2">
-                  <strong>Requisição:</strong>{" "}
+                  <strong>Requisição:</strong> <br />
                   {`${request_host}${request_path}?${request_query}`}
                 </Typography>
               </ListItem>
               <ListItem>
                 <Typography fontSize="0.8rem" variant="body2">
-                  <strong>IP de origem:</strong> {`${request_ip}`}
+                  <strong>IP de origem:</strong> <br /> {`${request_ip}`}
                 </Typography>
               </ListItem>
             </List>
@@ -236,53 +234,28 @@ export default function DataCard({
               </Button>
             </Stack>
           </Box>
-
-          {/* <Box>
-                <Table size="small">
-                  <TableHead>
-                    <TableRow hover onClick={handleClickParams}>
-                      <TableCell>Parametros recebidos</TableCell>
-                      <TableCell align="right">
-                        {!openParams && (
-                          <IconButton size="small">
-                            <VisibilityIcon fontSize="small" />
-                          </IconButton>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell
-                        style={{ paddingBottom: 0, paddingTop: 0 }}
-                        colSpan={6}
-                      >
-                        <Collapse in={openParams} timeout="auto" unmountOnExit>
-                          <Box
-                            margin={1}
-                            gap={2}
-                            lineHeight="1.5rem"
-                            overflow="auto"
-                            height="150px"
-                            width={{ xs: "100%", md: "450px" }}
-                            sx={{
-                              wordBreak: "break-all",
-                              wordWrap: "break-word",
-                              overflowX: "auto",
-                              display: "block",
-                            }}
-                          >
-                            <Typography fontSize="0.8rem">
-                              {dataRow.http_request_body}
-                            </Typography>
-                          </Box>
-                        </Collapse>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </Box> */}
-          {/* </Box> */}
+          <Box
+            maxHeight="600px"
+            sx={{
+              wordBreak: "break-all",
+              wordWrap: "break-word",
+              overflowX: "auto",
+              display: "block",
+            }}
+          >
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Parametros Recebidos</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{http_request_body}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Box>
         </CardContent>
       </Collapse>
     </Card>
