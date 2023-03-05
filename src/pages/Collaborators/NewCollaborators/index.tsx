@@ -34,7 +34,6 @@ export function NewCollaborators() {
   const handleNewCollaborators = async (data: NewCollaboratorData) => {
     try {
       const response = await setCollaborator(data);
-      console.log(response);
     } catch (error) {
       console.log(error);
     } finally {

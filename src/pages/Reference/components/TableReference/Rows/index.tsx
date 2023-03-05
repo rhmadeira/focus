@@ -34,7 +34,6 @@ export default function Rows({ dataRow }: ITableReferenceProps) {
 
   function handleClickRow() {
     setOpen(!open);
-    console.log(dataRow);
   }
   function handleClickParams() {
     setOpenParams(!openParams);

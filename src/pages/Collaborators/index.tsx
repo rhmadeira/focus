@@ -36,8 +36,6 @@ export default function Collaborators() {
     resolver: zodResolver(schemaSearch),
   });
 
-  console.log("collaboratorData", collaboratorData);
-
   async function handleSearch(input: SearchFormData) {
     try {
       setIsLoading(true);
