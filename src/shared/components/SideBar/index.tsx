@@ -31,12 +31,24 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  //event close drawer when click outside
+  const handleDrawerCloseOutside = (event: React.MouseEvent<HTMLElement>) => {
+    console.log(event.target);
+    console.log(event.currentTarget);
+    if (event.target !== event.currentTarget || open === true) {
+      setOpen(false);
+    }
+  };
+
   return (
     <Box
-      display="flex"
-      width="100vw"
+      // display="flex"
+      // width="100vw"
       height="auto" //era 100% troquei para auto verificar onde quebra
       bgcolor={theme.palette.background.default}
+      paddingTop={8}
+      paddingLeft={smDown ? 7 : 8}
+      paddingBottom={1}
     >
       <AppBar open={open}>
         <Toolbar>
@@ -110,10 +122,14 @@ export default function MiniDrawer() {
       </Drawer>
       <Box
         component="main"
-        sx={{
-          flexGrow: 1,
-          marginTop: "64px",
-        }}
+        display=""
+        sx={
+          {
+            // flexGrow: 1,
+            // marginTop: "64px",
+          }
+        }
+        onClick={handleDrawerCloseOutside}
       >
         <Outlet />
       </Box>
