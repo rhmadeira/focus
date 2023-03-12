@@ -15,13 +15,13 @@ import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { ProfileBtn } from "./components/ProfileBtn";
 import { ToggleThemeSwitch } from "./components/ToggleThemeSwitch";
 import { OptionSideBar } from "./components/OptionSideBar";
-import { useAppThemeContext } from "../../context/ThemeContext";
+import { useThemeApp } from "../../services/hooks/useThemeApp";
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const { toggleTheme } = useAppThemeContext();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+  const toggleThemeApp = useThemeApp((state) => state.toggleThemeApp);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -95,18 +95,21 @@ export default function MiniDrawer() {
               open={open}
               label="Referência"
               to="/referencia"
+              setOpen={setOpen}
             />
             <OptionSideBar
               icon="groups"
               open={open}
               label="Colaborador"
               to="/colaborador"
+              setOpen={setOpen}
             />
             <OptionSideBar
               icon="domain"
               open={open}
               label="Empresa"
               to="/empresa"
+              setOpen={setOpen}
             />
             {/* <OptionSideBar
               icon="paid"
@@ -117,7 +120,7 @@ export default function MiniDrawer() {
           </ListItem>
         </List>
         <Box margin={"auto auto 10px auto"}>
-          <ToggleThemeSwitch onChange={() => toggleTheme()} />
+          <ToggleThemeSwitch onChange={() => toggleThemeApp()} />
         </Box>
       </Drawer>
       <Box

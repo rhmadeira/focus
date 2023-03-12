@@ -33,7 +33,6 @@ export function LayoutBasePage({ children, title }: ILayoutBasePageProps) {
         </Title>
       </Box>
       <Box
-        // height="100%"
         padding={!smDown ? "0 20px" : "0 5px"}
         display="flex"
         flexDirection="column"

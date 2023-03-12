@@ -12,9 +12,16 @@ interface ILinkSideBarProps {
   open: boolean;
   label: string;
   to: string;
+  setOpen: (open: boolean) => void;
 }
 
-export function OptionSideBar({ icon, open, label, to }: ILinkSideBarProps) {
+export function OptionSideBar({
+  icon,
+  open,
+  label,
+  to,
+  setOpen,
+}: ILinkSideBarProps) {
   const resolverPath = useResolvedPath(to);
   const match = useMatch({ path: resolverPath.pathname, end: false });
   return (
@@ -32,6 +39,7 @@ export function OptionSideBar({ icon, open, label, to }: ILinkSideBarProps) {
             justifyContent: open ? "initial" : "center",
             px: 2.5,
           }}
+          onClick={() => setOpen(false)}
         >
           <ListItemIcon
             sx={{
