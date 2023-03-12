@@ -10,18 +10,22 @@ import ListItem from "@mui/material/ListItem";
 import { Link, Outlet } from "react-router-dom";
 import { AppBar, Drawer, DrawerHeader } from "./styles";
 import Logo from "../../../assets/logo.svg";
-import { Box } from "@mui/material";
+import { Box, Switch } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { ProfileBtn } from "./components/ProfileBtn";
 import { ToggleThemeSwitch } from "./components/ToggleThemeSwitch";
 import { OptionSideBar } from "./components/OptionSideBar";
 import { useThemeApp } from "../../services/hooks/useThemeApp";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import NightsStayIcon from "@mui/icons-material/NightsStay";
+import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const toggleThemeApp = useThemeApp((state) => state.toggleThemeApp);
+  const isDarkTheme = useThemeApp((state) => state.isDarkTheme);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -66,9 +70,13 @@ export default function MiniDrawer() {
           <Link to="/">
             <img src={Logo} alt="logo" width={120} />
           </Link>
-          <div style={{ marginLeft: "auto" }}>
+          <Box display="flex" alignItems="center" marginLeft="auto">
+            <ToggleThemeSwitch
+              onChange={() => toggleThemeApp()}
+              isDarkTheme={isDarkTheme}
+            />
             <ProfileBtn />
-          </div>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -119,9 +127,6 @@ export default function MiniDrawer() {
             /> */}
           </ListItem>
         </List>
-        <Box margin={"auto auto 10px auto"}>
-          <ToggleThemeSwitch onChange={() => toggleThemeApp()} />
-        </Box>
       </Drawer>
       <Box
         component="main"
