@@ -9,15 +9,18 @@ import SubTitle from "../../shared/components/SubTitle";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import TableReference from "./components/TableReference";
 import { useState } from "react";
-import { getReference } from "../../shared/services/reference";
+import { getAllReference } from "../../shared/services/reference";
 import { IReference } from "../../shared/services/schemas/referenceSchema";
 import CardReference from "./components/CardReference";
+import { useSearch } from "../../shared/services/hooks/useSearch";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
   const [isLoading, setIsLoading] = useState(false);
   const [partnersFiltered, setPartnersFiltered] = useState<IReference[]>([]);
+  const setReference = useSearch((state) => state.setReference);
+  const reference = useSearch((state) => state.reference);
   const {
     control,
     handleSubmit,
@@ -31,11 +34,16 @@ export default function Reference() {
   async function handleSearchRef(data: SearchRefFormData) {
     try {
       setIsLoading(true);
-      const { value } = await getReference(data);
-      setPartnersFiltered(value);
+      if (!reference.length) {
+        const { value } = await getAllReference(data);
+        setReference(value);
+        setPartnersFiltered(value);
+      } else {
+        setPartnersFiltered(reference);
+      }
 
       if (data.nome_emitente) {
-        const filtered = value.filter((ref) =>
+        const filtered = reference.filter((ref) =>
           ref.nome_emitente
             .toUpperCase()
             .includes(data.nome_emitente?.toUpperCase() || "")
@@ -43,13 +51,13 @@ export default function Reference() {
         setPartnersFiltered(filtered);
       }
       if (data.ref) {
-        const filtered = value.filter((ref) =>
+        const filtered = reference.filter((ref) =>
           ref.ref.toUpperCase().includes(data.ref?.toUpperCase() || "")
         );
         setPartnersFiltered(filtered);
       }
       if (data.numero) {
-        const filtered = value.filter((ref) =>
+        const filtered = reference.filter((ref) =>
           ref.numero.toUpperCase().includes(data.numero?.toUpperCase() || "")
         );
         setPartnersFiltered(filtered);

@@ -47,11 +47,7 @@ export default function Rows({ dataRow }: ITableReferenceProps) {
         sx={{ cursor: "pointer" }}
       >
         <TableCell>
-          <Typography
-            color="var(--blue500)"
-            fontWeight="bold"
-            fontSize="1.05rem"
-          >
+          <Typography color="primary" fontWeight="bold" fontSize="1.05rem">
             {dataRow.ref}
           </Typography>
         </TableCell>

@@ -10,15 +10,12 @@ import ListItem from "@mui/material/ListItem";
 import { Link, Outlet } from "react-router-dom";
 import { AppBar, Drawer, DrawerHeader } from "./styles";
 import Logo from "../../../assets/logo.svg";
-import { Box, Switch } from "@mui/material";
+import { Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery/useMediaQuery";
 import { ProfileBtn } from "./components/ProfileBtn";
 import { ToggleThemeSwitch } from "./components/ToggleThemeSwitch";
 import { OptionSideBar } from "./components/OptionSideBar";
 import { useThemeApp } from "../../services/hooks/useThemeApp";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import NightsStayIcon from "@mui/icons-material/NightsStay";
-import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -37,8 +34,6 @@ export default function MiniDrawer() {
 
   //event close drawer when click outside
   const handleDrawerCloseOutside = (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.target);
-    console.log(event.currentTarget);
     if (event.target !== event.currentTarget || open === true) {
       setOpen(false);
     }
@@ -128,17 +123,7 @@ export default function MiniDrawer() {
           </ListItem>
         </List>
       </Drawer>
-      <Box
-        component="main"
-        display=""
-        sx={
-          {
-            // flexGrow: 1,
-            // marginTop: "64px",
-          }
-        }
-        onClick={handleDrawerCloseOutside}
-      >
+      <Box component="main" display="" onClick={handleDrawerCloseOutside}>
         <Outlet />
       </Box>
     </Box>

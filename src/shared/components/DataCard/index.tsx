@@ -85,7 +85,6 @@ export default function DataCard({
     setExpanded(!expanded);
   };
 
-  console.log(smDown);
   return (
     <Card sx={{ minWidth: 275, marginBottom: 1 }}>
       <CardContent>
