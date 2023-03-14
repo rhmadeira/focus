@@ -50,6 +50,8 @@ export const AppBar = styled(MuiAppBar, {
   border: "none",
   outline: "none",
   boxShadow: "none",
+  display: "flex",
+  justifyContent: "center",
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,

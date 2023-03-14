@@ -46,7 +46,7 @@ export default function MiniDrawer() {
       height="auto" //era 100% troquei para auto verificar onde quebra
       bgcolor={theme.palette.background.default}
       paddingTop={8}
-      paddingLeft={smDown ? 7 : 8}
+      paddingLeft={smDown ? 0 : 8}
       paddingBottom={1}
     >
       <AppBar open={open}>
@@ -62,9 +62,11 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Link to="/">
-            <img src={Logo} alt="logo" width={120} />
-          </Link>
+          {smDown && !open && (
+            <Link to="/">
+              <img src={Logo} alt="logo" width={smDown ? 80 : 120} />
+            </Link>
+          )}
           <Box display="flex" alignItems="center" marginLeft="auto">
             <ToggleThemeSwitch
               onChange={() => toggleThemeApp()}
@@ -74,7 +76,11 @@ export default function MiniDrawer() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer
+        hidden={smDown && !open ? true : false}
+        variant="permanent"
+        open={open}
+      >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose} sx={{ color: "white" }}>
             {theme.direction === "rtl" ? (
