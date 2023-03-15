@@ -15,6 +15,8 @@ export const globalStyles = (
 
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
+
+        
       }
       a {
         text-decoration: none;
@@ -24,8 +26,14 @@ export const globalStyles = (
         width: 4px;
       }
       * {
-        box-sizing: border-box;
+          box-sizing: border-box;
+         
       }
+      *::-webkit-scrollbar-thumb {
+          background-color: #85898e;
+          border-radius: 1px;
+          border: 1px solid #85898e;
+}
 
       :root {
         --white: #f8f9fc;

@@ -86,7 +86,7 @@ export default function DataCard({
   };
 
   return (
-    <Card sx={{ minWidth: 275, marginBottom: 1 }}>
+    <Card sx={{marginBottom: 1, width:"100%" }}>
       <CardContent>
         <Box
           marginBottom={1}
@@ -113,7 +113,6 @@ export default function DataCard({
           display="flex"
           justifyContent="space-between"
           width="100%"
-          gap={1}
           alignItems="center"
         >
           <Box display="flex" flexDirection="column" borderRadius={1}>

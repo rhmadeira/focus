@@ -62,11 +62,9 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          {smDown && !open && (
             <Link to="/">
               <img src={Logo} alt="logo" width={smDown ? 80 : 120} />
             </Link>
-          )}
           <Box display="flex" alignItems="center" marginLeft="auto">
             <ToggleThemeSwitch
               onChange={() => toggleThemeApp()}
