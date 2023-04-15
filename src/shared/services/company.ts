@@ -1,4 +1,3 @@
-import axios from "axios";
 import { NewCompanyData } from "../../pages/Companies/schemas";
 import { api } from "./api/axios";
 import { ICompany } from "./schemas/companySchema";

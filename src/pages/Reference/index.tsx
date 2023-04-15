@@ -1,11 +1,9 @@
-import { Box, Divider, Icon, Theme, useMediaQuery } from "@mui/material";
+import { Box, Icon, Theme, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { schemaSearchRef, SearchRefFormData } from "./schemas/referenceSchema";
 import InputControlled from "../../shared/components/form/InputControlled";
-import LayoutFormBase from "../../shared/layouts/LayoutFormBase";
-import SubTitle from "../../shared/components/SubTitle";
 import { LayoutBasePage } from "../../shared/layouts/LayoutBasePage";
 import TableReference from "./components/TableReference";
 import { useState } from "react";
@@ -13,6 +11,7 @@ import { getAllReference } from "../../shared/services/reference";
 import { IReference } from "../../shared/services/schemas/referenceSchema";
 import CardReference from "./components/CardReference";
 import { useSearch } from "../../shared/services/hooks/useSearch";
+import SearchFormBox from "../../shared/components/form/SearchFormBox";
 
 export default function Reference() {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
@@ -80,9 +79,11 @@ export default function Reference() {
         gap={2}
         marginTop={smDown ? "5px" : "10px"}
       >
-        <LayoutFormBase handleSearch={handleSubmit(handleSearchRef)}>
-          <SubTitle>Buscar Referência:</SubTitle>
-          <Divider />
+        <SearchFormBox
+          title="Buscar Referência"
+          showButtonAdd={false}
+          handleSearch={handleSubmit(handleSearchRef)}
+        >
           <Box
             display="flex"
             justifyContent="space-between"
@@ -141,7 +142,7 @@ export default function Reference() {
               </Button>
             </Box>
           </Box>
-        </LayoutFormBase>
+        </SearchFormBox>
         <Box width="100%">
           {mdDown ? (
             <CardReference
