@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Divider,
   Icon,
@@ -18,6 +19,7 @@ interface ILayoutFormBaseProps {
   title: string;
   titleButton?: string;
   showButtonAdd?: boolean;
+  titleButtonSearch?: string;
   handleSearch?: () => void;
   handleButtonAdd?: () => void;
   children?: React.ReactNode;
@@ -26,6 +28,7 @@ interface ILayoutFormBaseProps {
 export default function SearchFormBox({
   handleSearch,
   handleButtonAdd,
+  titleButtonSearch,
   children,
   title,
   titleButton,
@@ -64,7 +67,19 @@ export default function SearchFormBox({
           )}
         </HeaderContainer>
         <Divider />
-        <BodyContainer>{children}</BodyContainer>
+        <BodyContainer>
+          {children}
+          <Box>
+            <Button
+              startIcon={<Icon>search</Icon>}
+              type="submit"
+              variant="contained"
+              size="small"
+            >
+              {titleButtonSearch}
+            </Button>
+          </Box>
+        </BodyContainer>
       </FormBox>
     </FormBoxContainer>
   );

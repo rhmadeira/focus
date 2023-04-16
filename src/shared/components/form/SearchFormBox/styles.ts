@@ -21,4 +21,9 @@ export const HeaderContainer = styled(Box)`
   flex-wrap: wrap;
 `;
 
-export const BodyContainer = styled(Box)``;
+export const BodyContainer = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+`;
