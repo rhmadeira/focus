@@ -30,11 +30,9 @@ export default function MuiDataPicker<T extends object>({
           }
         >
           <DatePicker
-            label={textPlaceholder}
             // value={value}
             {...field}
             // onChange={(newValue) => setValue(newValue)}
-            renderInput={(params) => <TextField size="small" {...params} />}
           />
         </LocalizationProvider>
       )}
